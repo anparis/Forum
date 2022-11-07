@@ -9,6 +9,10 @@ final class Categorie extends Entity
     private $id;
     private $nom;
 
+    public function __construct($data){         
+        $this->hydrate($data);        
+    }
+
     public function getId()
         {
                 return $this->id;

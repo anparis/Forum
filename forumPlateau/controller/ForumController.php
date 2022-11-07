@@ -14,7 +14,7 @@
         public function index(){
 
            $topicManager = new TopicManager();
-        //    var_dump($topicManager->findAll(["datecreation", "DESC"]));
+           
             return [
                 "view" => VIEW_DIR."forum/listTopics.php",
                 "data" => [
@@ -29,18 +29,19 @@
              return [
                  "view" => VIEW_DIR."forum/listCategories.php",
                  "data" => [
-                     "categorie" => $categorieManager->findAll([])
+                     "categories" => $categorieManager->findAll(["nom","ASC"])
                  ]
              ];
          
          }
 
-         public function addTest(){
-            $categorieManager = new CategorieManager();
-            var_dump($categorieManager->findOneById(1)); 
+        //  public function addCategories(){
+        //     $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        //     $categorieManager = new CategorieManager();
+        //     $categorieManager->add(["nom"=>$nom]);
+        //  }
 
-            
-         }
+
         
 
     }

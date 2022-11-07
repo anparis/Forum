@@ -8,7 +8,6 @@ $topics = $result["data"]['topics'];
 
 <?php
 foreach($topics as $topic ){
-    // var_dump($topic);
     ?>
     <p><?=$topic->getTitle()?></p>
     <?php
