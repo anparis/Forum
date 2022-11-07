@@ -3,8 +3,10 @@
     namespace Controller;
 
     use App\Session;
+    use App\DAO;
     use App\AbstractController;
     use App\ControllerInterface;
+    use Model\Managers\AppartenirManager;
     use Model\Managers\TopicManager;
     use Model\Managers\PostManager;
     use Model\Managers\CategorieManager;
@@ -14,11 +16,11 @@
         public function index(){
 
            $topicManager = new TopicManager();
-           
+
             return [
                 "view" => VIEW_DIR."forum/listTopics.php",
                 "data" => [
-                    "topics" => $topicManager->findAll(["datecreation", "DESC"])
+                    "topics" => $topicManager->findAll(["datecreation", "DESC"]),
                 ]
             ];
         }
@@ -37,6 +39,9 @@
 
          public function listPosts(){
             $postManager = new PostManager();
+
+            // if the id of topic is set in url
+            // -> only display posts related to the topic
             if(isset($_GET['id']))
                 $post = $postManager->findPostsById($_GET['id']);
             else 
@@ -49,6 +54,17 @@
                  ]
              ];
          
+         }
+
+         //test appartenir
+         public function listAppartenir(){
+            $appartenirManager = new AppartenirManager();
+            $appartenirManager->add([
+                "topic_id"=>1,
+                "categorie_id"=>3
+            ]);
+            die;
+            
          }
 
          public function addCategories(){

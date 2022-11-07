@@ -9,6 +9,10 @@ final class Appartenir extends Entity
     private $topic;
     private $categorie;
 
+    public function __construct($data){         
+        $this->hydrate($data);
+    }
+
     public function getTopicId()
         {
                 return $this->topic;

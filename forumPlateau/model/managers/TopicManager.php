@@ -15,5 +15,4 @@
             parent::connect();
         }
 
-
     }
