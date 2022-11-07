@@ -1,8 +1,8 @@
 <?php
 
 ?>
-
-<form action="?ctrl=controller&action=addCategories" method="post" enctype="multipart/form-data">
+<h1> Ajouter une categorie</h1>
+<form action="?ctrl=forum&action=addCategories" method="post" enctype="multipart/form-data">
         <p>
             <label>
                 Categories :
@@ -11,7 +11,7 @@
         </p>
        
         <p>
-            <input type="submit" name="submitGenre" value="Ajouter la categorie">
+            <input type="submit" name="submitCategorie" value="Ajouter la categorie">
         </p>
 </form>
 

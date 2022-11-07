@@ -19,7 +19,7 @@ final class Appartenir extends Entity
          *
          * @return  self
          */ 
-        public function setId($id)
+        public function setTopicId($id)
         {
                 $this->topic = $id;
 

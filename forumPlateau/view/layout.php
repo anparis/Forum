@@ -44,6 +44,7 @@
                             <a href="/security/register.html">Inscription</a>
                             <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a>
                             <a href="index.php?ctrl=forum&action=listCategories">la liste des categories</a>
+                            <a href="index.php?ctrl=forum&action=listPosts">la liste des posts</a>
                         <?php
                         }
                    

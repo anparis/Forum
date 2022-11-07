@@ -35,11 +35,25 @@
          
          }
 
-        //  public function addCategories(){
-        //     $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        //     $categorieManager = new CategorieManager();
-        //     $categorieManager->add(["nom"=>$nom]);
-        //  }
+         public function listPosts(){
+            $postManager = new PostManager();
+
+             return [
+                 "view" => VIEW_DIR."forum/listPosts.php",
+                 "data" => [
+                     "posts" => $postManager->findAll(["datePost","ASC"])
+                 ]
+             ];
+         
+         }
+
+         public function addCategories(){
+            $categorieManager = new CategorieManager();
+            $categorieManager->addCategories();
+            return [
+                "view" => VIEW_DIR."forum/addCategories.php",
+            ];
+         }
 
 
         

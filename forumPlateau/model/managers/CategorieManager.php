@@ -15,5 +15,13 @@
             parent::connect();
         }
 
+        public function addCategories(){
+            if(isset($_POST['submitCategorie'])){
+                $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $this->add(["nom"=>$nom]);
+                header('Location: index.php?ctrl=forum&action=listCategories');
+            }
+            
+        }
 
     }
