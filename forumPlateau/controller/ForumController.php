@@ -37,11 +37,15 @@
 
          public function listPosts(){
             $postManager = new PostManager();
+            if(isset($_GET['id']))
+                $post = $postManager->findPostsById($_GET['id']);
+            else 
+                $post = $postManager->findAll(["datePost","ASC"]);
 
              return [
                  "view" => VIEW_DIR."forum/listPosts.php",
                  "data" => [
-                     "posts" => $postManager->findAll(["datePost","ASC"])
+                     "posts" => $post
                  ]
              ];
          
@@ -55,7 +59,5 @@
             ];
          }
 
-
-        
 
     }

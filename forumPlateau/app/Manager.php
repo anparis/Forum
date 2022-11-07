@@ -82,7 +82,7 @@
         }
         
         protected function getMultipleResults($rows, $class){
-
+            // verify if array ?
             if(is_iterable($rows)){
                 return $this->generate($rows, $class);
             }

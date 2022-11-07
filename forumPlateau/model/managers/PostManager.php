@@ -14,4 +14,14 @@
         public function __construct(){
             parent::connect();
         }
+
+        public function findPostsById($id){
+            $sql = "SELECT * FROM ".$this->tableName." WHERE post.topic_id = :id";
+            return $this->getMultipleResults(
+                // calling DAO class and her select static method 
+                // take id to prepare it and execute it
+                DAO::select($sql, ['id'=>$id]),
+                $this->className
+            );
+        }
     }
