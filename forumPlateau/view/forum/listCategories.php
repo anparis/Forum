@@ -7,7 +7,6 @@ $categories = $result["data"]['categorie'];
 
 <?php
 foreach($categories as $categorie ){
-
     ?>
     <p><?=$categorie->getNom()?></p>
     <?php

@@ -4,7 +4,7 @@ namespace Model\Entities;
 
 use App\Entity;
 
-final class categorie extends Entity
+final class Categorie extends Entity
 {
     private $id;
     private $nom;

@@ -14,27 +14,32 @@
         public function index(){
 
            $topicManager = new TopicManager();
-           
+        //    var_dump($topicManager->findAll(["datecreation", "DESC"]));
             return [
                 "view" => VIEW_DIR."forum/listTopics.php",
                 "data" => [
                     "topics" => $topicManager->findAll(["datecreation", "DESC"])
                 ]
             ];
-        
         }
 
         public function listCategories(){
-
             $categorieManager = new CategorieManager();
-            
+
              return [
                  "view" => VIEW_DIR."forum/listCategories.php",
                  "data" => [
-                     "categorie" => $categorieManager->findAll(["nom", "ASC"])
+                     "categorie" => $categorieManager->findAll([])
                  ]
              ];
          
+         }
+
+         public function addTest(){
+            $categorieManager = new CategorieManager();
+            var_dump($categorieManager->findOneById(1)); 
+
+            
          }
         
 
