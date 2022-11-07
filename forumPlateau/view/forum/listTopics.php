@@ -9,7 +9,10 @@ $topics = $result["data"]['topics'];
 <?php
 foreach($topics as $topic ){
     ?>
-    <p><?=$topic->getTitle()?></p>
+    <section id="topiclist">
+        <p><?=$topic->getTitle()?></p>
+        <p><?=$topic->getDateCreation()?></p>
+    </section>
     <?php
 }
 

@@ -7,10 +7,11 @@ $categories = $result["data"]['categories'];
 
 <?php
 foreach($categories as $categorie ){
-    var_dump($categorie);
 
     ?>
-    <p><a href="index.php?ctrl=forum&action=listTopics&id=<?=$categorie->getId()?>"><?=$categorie->getNom()?></a></p>
+    <section id="categorielist"> 
+    <a href="index.php?ctrl=forum&action=listTopics&id=<?=$categorie->getId()?>"><?=$categorie->getNom()?></a>
+    </section>
     <?php
 }?>
 <a href="ctrl=forum&action=addCategories">Ajouter une categorie</a>
