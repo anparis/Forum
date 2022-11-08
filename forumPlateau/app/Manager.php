@@ -59,6 +59,7 @@
                 INSERT INTO user (username,password,email) VALUES ('Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com') 
             */
             try{
+                // return the last insert id using insert static method from DAO
                 return DAO::insert($sql);
             }
             catch(\PDOException $e){
