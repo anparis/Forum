@@ -16,8 +16,7 @@
         }
 
         public function findTopicsById($id){
-            $sql = "SELECT * FROM ".$this->tableName." t INNER JOIN appartenir a ON t.id_topic = a.topic_id 
-            WHERE a.categorie_id = :id";
+            $sql = "SELECT * FROM ".$this->tableName." t WHERE t.categorie_id = :id";
             return $this->getMultipleResults(
                 // calling DAO class and her select static method 
                 // take id to prepare it and execute it

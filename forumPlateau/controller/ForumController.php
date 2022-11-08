@@ -95,4 +95,20 @@ use Model\Managers\UtilisateurManager;
                 ]
             ];
          }
+
+         public function addCategories(){
+            $categorieManager = new CategorieManager();
+            $categorieManager->addCategories();
+            return [
+                "view" => VIEW_DIR."forum/addCategories.php",
+            ];
+         }
+
+         public function addTopics(){
+            $topicManager = new TopicManager();
+            $topicManager->addTopics();
+            return [
+                "view" => VIEW_DIR."forum/addTopic.php",
+            ];
+         }
     }
