@@ -95,14 +95,4 @@ use Model\Managers\UtilisateurManager;
                 ]
             ];
          }
-
-         public function addCategories(){
-            $categorieManager = new CategorieManager();
-            $categorieManager->addCategories();
-            return [
-                "view" => VIEW_DIR."forum/addCategories.php",
-            ];
-         }
-
-
     }

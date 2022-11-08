@@ -20,8 +20,7 @@
                 $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $this->add(["nom"=>$nom]);
                 header('Location: index.php?ctrl=forum&action=listCategories');
+                exit();
             }
-            
         }
-
     }
