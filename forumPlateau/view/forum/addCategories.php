@@ -2,7 +2,7 @@
 
 ?>
 <h1> Ajouter une categorie</h1>
-<form action="?ctrl=securty&action=addCategories" method="post" enctype="multipart/form-data">
+<form action="?ctrl=forum&action=addCategories" method="post" enctype="multipart/form-data">
         <p>
             <label>
                 Categories :

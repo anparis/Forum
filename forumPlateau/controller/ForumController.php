@@ -102,6 +102,7 @@ use Model\Managers\UtilisateurManager;
             return [
                 "view" => VIEW_DIR."forum/addCategories.php",
             ];
+
          }
 
          public function addTopics(){
