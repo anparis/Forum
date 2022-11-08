@@ -1,9 +1,10 @@
 <?php
-
 $posts = $result["data"]['posts'];
+$topics = $result["data"]['topics'];
 ?>
-<h1>liste Posts</h1>
-
+<h1><?=$topics->getTitle()?></h1>
+<p>Created by <?=$topics->getUtilisateur()->getPseudo()?> the <?=$topics->getDateCreation()?></p>
+<hr>
 <?php
 foreach($posts as $post){
     ?>

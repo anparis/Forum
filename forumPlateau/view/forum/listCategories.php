@@ -10,7 +10,9 @@ foreach($categories as $categorie ){
 
     ?>
     <section id="categorielist"> 
-        <?=$categorie->getNom()?>
+        <a href='index.php?ctrl=forum&action=listCategories&id=<?=$categorie->getId()?>'>
+            <?=$categorie->getNom()?>
+        </a>
     </section>
     <?php
 }?>

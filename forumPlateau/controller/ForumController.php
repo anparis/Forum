@@ -26,43 +26,63 @@
         }
 
         public function listCategories(){
-            $categorieManager = new CategorieManager();
 
-             return [
-                 "view" => VIEW_DIR."forum/listCategories.php",
-                 "data" => [
-                     "categories" => $categorieManager->findAll(["nom","ASC"])
-                 ]
-             ];
+            $categorieManager = new CategorieManager();
+            
+            if(isset($_GET['id'])){
+                $topicManager = new TopicManager();
+
+                return [
+                    "view" => VIEW_DIR."forum/listTopicsByCategories.php",
+                    "data" => [
+                        "categories" => $categorieManager->findOneById($_GET['id']),
+                        "topics" => $topicManager->findTopicsById($_GET['id'])
+                    ]
+                ];
+            }
+            else{
+                return [
+                    "view" => VIEW_DIR."forum/listCategories.php",
+                    "data" => [
+                        "categories" => $categorieManager->findAll(["nom","ASC"])
+                    ]
+                ];
+            }
          
          }
 
          public function listPosts(){
             $postManager = new PostManager();
-
             // if the id of topic is set in url
             // -> only display posts related to the topic
-            if(isset($_GET['id']))
-                $post = $postManager->findPostsById($_GET['id']);
-            else 
-                $post = $postManager->findAll(["datePost","ASC"]);
+            if(isset($_GET['id'])){
+                $topicManager = new TopicManager();
 
-             return [
-                 "view" => VIEW_DIR."forum/listPosts.php",
-                 "data" => [
-                     "posts" => $post
-                 ]
-             ];
-         
+                $post = $postManager->findPostsById($_GET['id']);
+                $topic = $topicManager->findOneById($_GET['id']);
+
+                return [
+                    "view" => VIEW_DIR."forum/listPostsByTopics.php",
+                    "data" => [
+                        "posts" => $post,
+                        "topics" => $topic
+                    ]
+                ];
+            }
+            else{
+
+                return [
+                    "view" => VIEW_DIR."forum/listPosts.php",
+                    "data" => [
+                        "posts" => $postManager->findAll(["datePost","ASC"]),
+                    ]
+                ];
+            }
          }
 
-         //test appartenir
+         //debug => permet d'ajouter dans la BDD
          public function listAppartenir(){
             $appartenirManager = new AppartenirManager();
-            $appartenirManager->add([
-                "topic_id"=>1,
-                "categorie_id"=>3
-            ]);
             die;
             
          }
