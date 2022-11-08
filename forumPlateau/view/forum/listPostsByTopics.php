@@ -19,14 +19,14 @@ foreach($posts as $post){
     <?php }?>
     <br>
 <?php if($statutTopic){ ?>
-    <form action="index.php?ctrl=forum&action=addPost&id=<?=$idTopic?>" method="post">
+    <form action="index.php?ctrl=forum&action=addPosts&id=<?=$idTopic?>" method="post">
     <p>
         <label>
             Message :<br>
             <textarea name="text" rows="5" cols="45"></textarea>        
         </label>
     </p>
-    <input type="submit" name="submit" value="Answer">
+    <input type="submit" name="submitPost" value="Answer">
     </form>
     <?php }
     else{ ?>

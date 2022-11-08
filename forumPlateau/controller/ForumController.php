@@ -120,12 +120,12 @@ class ForumController extends AbstractController implements ControllerInterface
         ];
     }
 
-    // public function addPosts()
-    // {
-    //     $postManager = new PostManager();
-    //     $postManager->addPosts();
-    //     return [
-    //         "view" => VIEW_DIR . "forum/listPostsByTopics.php",
-    //     ];
-    // }
+    public function addPosts()
+    {
+        $postManager = new PostManager();
+        $postManager->addPosts();
+        return [
+            "view" => VIEW_DIR . "forum/listPostsByTopics.php",
+        ];
+    }
 }

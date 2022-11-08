@@ -34,4 +34,25 @@
                 $this->className
             );
         }
+
+        public function addPosts(){
+            if(isset($_POST['submitPost'])){
+                //need to add list of categories to choose from in addTopics
+                $idTopic = $_GET['id'];
+                $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $idUser = 1;
+
+                if($idTopic && $text && $idUser){
+                    // Array preparation to inject data in DB with add function
+                    $postData = [
+                        "text" => $text,
+                        "topic_id" => $idTopic,
+                        "utilisateur_id" => $idUser
+                    ];
+                    $this->add($postData);
+                    header('Location: index.php?ctrl=forum&action=listPosts&id='.$idTopic);
+                }
+                
+            }
+        }
     }

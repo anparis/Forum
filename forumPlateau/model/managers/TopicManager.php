@@ -42,7 +42,6 @@
                         "categorie_id" => $idCategorie,
                         "utilisateur_id" => $idUser
                     ];
-                    var_dump($topicData);
                     $lastTopicInsert = $this->add($topicData);
 
                     $postManager = new PostManager;
