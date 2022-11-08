@@ -10,6 +10,7 @@
         private $dateCreation;
         private $statut;
         private $utilisateur;
+        private $categorie;
 
         public function __construct($data){         
             $this->hydrate($data);        
@@ -55,26 +56,6 @@
                 return $this;
         }
 
-        /**
-         * Get the value of user
-         */ 
-        public function getUtilisateur()
-        {
-                return $this->utilisateur;
-        }
-
-        /**
-         * Set the value of user
-         *
-         * @return  self
-         */ 
-        public function setUtilisateur($user)
-        {
-                $this->utilisateur = $user;
-
-                return $this;
-        }
-
         public function getDateCreation(){
             $formattedDate = $this->dateCreation->format("d/m/Y, H:i:s");
             return $formattedDate;
@@ -101,6 +82,46 @@
         public function setStatut($statut)
         {
                 $this->statut = $statut;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of user
+         */ 
+        public function getUtilisateur()
+        {
+                return $this->utilisateur;
+        }
+
+        /**
+         * Set the value of user
+         *
+         * @return  self
+         */ 
+        public function setUtilisateur($user)
+        {
+                $this->utilisateur = $user;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of user
+         */ 
+        public function getCategorie()
+        {
+                return $this->categorie;
+        }
+
+        /**
+         * Set the value of user
+         *
+         * @return  self
+         */ 
+        public function setCategorie($categorie)
+        {
+                $this->categorie = $categorie;
 
                 return $this;
         }
