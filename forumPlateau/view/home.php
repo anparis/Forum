@@ -5,5 +5,5 @@
 <p>
     <a href="/security/login.html">Se connecter</a>
     <span>&nbsp;-&nbsp;</span>
-    <a href="index.php?ctrl=security&action=addUtilisateur">S'inscrire</a>
+    <a href="index.php?ctrl=security&action=addUtilisateurs">S'inscrire</a>
 </p>

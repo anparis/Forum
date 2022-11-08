@@ -17,4 +17,12 @@
         public function index(){
 
         }
+
+        public function addUtilisateurs(){
+            $userManager = new UtilisateurManager();
+            $userManager->addUsers();
+            return [
+                "view" => VIEW_DIR . "security/addUtilisateurs.php",
+            ];
+        }
     }
