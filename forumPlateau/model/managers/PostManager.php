@@ -15,7 +15,7 @@
             parent::connect();
         }
 
-        public function findPostsById($id){
+        public function findPostsByTopicId($id){
             $sql = "SELECT * FROM ".$this->tableName." WHERE post.topic_id = :id";
             return $this->getMultipleResults(
                 // calling DAO class and her select static method 
@@ -25,4 +25,13 @@
             );
         }
 
+        public function findPostsByUserId($id){
+            $sql = "SELECT * FROM ".$this->tableName." WHERE post.utilisateur_id = :id";
+            return $this->getMultipleResults(
+                // calling DAO class and her select static method 
+                // take id to prepare it and execute it
+                DAO::select($sql, ['id'=>$id]),
+                $this->className
+            );
+        }
     }

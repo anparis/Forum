@@ -6,17 +6,17 @@
     use App\DAO;
     use App\AbstractController;
     use App\ControllerInterface;
-    use Model\Managers\AppartenirManager;
     use Model\Managers\TopicManager;
     use Model\Managers\PostManager;
     use Model\Managers\CategorieManager;
-    
+use Model\Managers\UtilisateurManager;
+
     class ForumController extends AbstractController implements ControllerInterface{
 
         public function index(){
 
            $topicManager = new TopicManager();
-
+           $categorieManager = new CategorieManager(); 
             return [
                 "view" => VIEW_DIR."forum/listTopics.php",
                 "data" => [
@@ -58,7 +58,7 @@
             if(isset($_GET['id'])){
                 $topicManager = new TopicManager();
 
-                $post = $postManager->findPostsById($_GET['id']);
+                $post = $postManager->findPostsByTopicId($_GET['id']);
                 $topic = $topicManager->findOneById($_GET['id']);
 
                 return [
@@ -80,11 +80,20 @@
             }
          }
 
-         //debug => permet d'ajouter dans la BDD
-         public function listAppartenir(){
-            $appartenirManager = new AppartenirManager();
-            die;
-            
+         // List posts by user
+         public function listPostsByUsers(){
+            $postManager = new PostManager();
+            $userManager = new UtilisateurManager();
+
+            $post = $postManager->findPostsByUserId($_GET['id']);
+            $user = $userManager->findOneById($_GET['id']);
+            return [
+                "view" => VIEW_DIR."forum/listPostsByUtilisateurs.php",
+                "data" => [
+                    "posts" => $post,
+                    "users" => $user
+                ]
+            ];
          }
 
          public function addCategories(){
