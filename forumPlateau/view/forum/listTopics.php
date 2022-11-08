@@ -14,6 +14,11 @@ foreach($topics as $topic){
         </a>
         <p>Created by <?=$topic->getUtilisateur()->getPseudo()?></p>
         <p><?=$topic->getDateCreation()?></p>
+        <section id="categorielist"> 
+        <a href='index.php?ctrl=forum&action=listCategories&id=<?=$topic->getCategorie()->getId()?>'>
+            <?=$topic->getCategorie()->getNom()?>
+        </a>
+    </section>
     </section>
     <?php
 }
