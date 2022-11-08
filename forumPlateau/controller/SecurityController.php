@@ -25,4 +25,12 @@
                 "view" => VIEW_DIR . "security/addUtilisateurs.php",
             ];
         }
+
+        public function loginUtilisateurs(){
+            $userManager = new UtilisateurManager();
+            $userManager->loginUsers();
+            return [
+                "view" => VIEW_DIR . "security/loginUtilisateurs.php",
+            ];
+        }
     }

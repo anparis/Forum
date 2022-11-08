@@ -1,5 +1,5 @@
 <h1>Formulaire d'inscription</h1>
-<form action="index.php?ctrl=security&action=addUtilisateurs" method="post" class="formulaire">
+<form action="index.php?ctrl=security&action=addUtilisateurs" method="post">
     <p>
         <label>
             email :
@@ -24,5 +24,5 @@
             <input type="password" name="mdp2" minlength=8>
         </label>
     </p>
-    <input type="submit" name="submitUser" value="Valider" class="submit">
+    <input type="submit" name="submitUser" value="Valider">
 </form>
