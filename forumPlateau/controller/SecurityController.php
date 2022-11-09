@@ -95,8 +95,11 @@
 
         // profile of user connected
         public function viewProfile(){
-            $user = new Utilisateur();
-            $user->nbPosts();
-            $user->nbTopics();
-        }
+            // $user = new Utilisateur();
+            // $user->nbPosts();
+            // $user->nbTopics();
+            return[
+                "view" => VIEW_DIR . "forum/viewProfile.php"
+            ];
     }
+}
