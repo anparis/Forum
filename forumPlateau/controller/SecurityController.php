@@ -85,9 +85,18 @@
         }
 
         public function logoutUtilisateurs(){
-            $_SESSION['user']=null;
-            return[
-                "view" => VIEW_DIR . "home.php"
-            ];
+            if(isset($_SESSION['user'])){
+                $_SESSION['user']=null;
+                return[
+                    "view" => VIEW_DIR . "home.php"
+                ];
+            }
+        }
+
+        // profile of user connected
+        public function viewProfile(){
+            $user = new Utilisateur();
+            $user->nbPosts();
+            $user->nbTopics();
         }
     }

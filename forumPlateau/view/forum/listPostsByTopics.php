@@ -18,7 +18,15 @@ foreach($posts as $post){
     </section>
     <?php }?>
     <br>
-<?php if($statutTopic){ ?>
+
+<?php if(isset($_SESSION['user'])){ ?>
+    <section id="modify">
+        <a href="edit">Editer</a>
+        <a href="delete">Supprimer</a>
+    </section>
+
+<?php } else{
+    if($statutTopic){ ?>
     <form action="index.php?ctrl=forum&action=addPosts&id=<?=$idTopic?>" method="post">
     <p>
         <label>
@@ -31,5 +39,5 @@ foreach($posts as $post){
     <?php }
     else{ ?>
     <h1>Statut Topic : private</h1>
-    <?php } ?>
+    <?php } }?>
 
