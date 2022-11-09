@@ -69,11 +69,8 @@
                 {
                     $userManager = new UtilisateurManager();
 
-                    
-
                     $getMdp = $userManager->getMdpByEmail($email);
                     $getUser = $userManager->getUserByEmail($email);
-                    var_dump($getUser);
                     die;
                     // return true if corresponding
                     $isMdp = password_verify($mdp, $getMdp['mdp']);
