@@ -48,11 +48,14 @@
                         $userManager->add($userData);
                         $this->redirectTo('home');
                     }
-                    else
-                        echo "email ou pseudo déjà utilisé";
+                    else{
+                        Session::addFlash('erreur','EMAIL OU PSEUDO DEJA UTILISE');
+                        echo Session::getFlash('erreur');
+                    }
                 }
                 else
-                    echo "Une erreur est survenu";
+                Session::addFlash('erreur','LES MDP NE CORRESPONDENT PAS');
+                echo Session::getFlash('erreur');
             }
             return [
                 "view" => VIEW_DIR . "security/addUtilisateurs.php"
