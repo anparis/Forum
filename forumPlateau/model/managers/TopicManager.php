@@ -24,8 +24,4 @@
                 $this->className
             );
         }
-
-        public function addTopics(){
-            
-        }
     }

@@ -16,9 +16,7 @@ class ForumController extends AbstractController implements ControllerInterface
 
     public function index()
     {
-
         $topicManager = new TopicManager();
-        $categorieManager = new CategorieManager();
         return [
             "view" => VIEW_DIR . "forum/listTopics.php",
             "data" => [
@@ -29,7 +27,6 @@ class ForumController extends AbstractController implements ControllerInterface
 
     public function listCategories()
     {
-
         $categorieManager = new CategorieManager();
 
         if (isset($_GET['id'])) {
@@ -108,8 +105,7 @@ class ForumController extends AbstractController implements ControllerInterface
             if($nom){
                 $categorieManager = new CategorieManager();
                 $categorieManager->add(["nom"=>$nom]);
-                header('Location: index.php?ctrl=forum&action=listCategories');
-                die;
+                $this->redirectTo('forum','listCategories');
             }
         }
         return [
@@ -146,7 +142,7 @@ class ForumController extends AbstractController implements ControllerInterface
                     "utilisateur_id" => $idUser
                 ];
                 $postManager->add($postData);
-                header('Location: index.php?ctrl=forum&action=listTopics');
+                $this->redirectTo('forum','listTopics');
             } 
         }
         return [
@@ -171,8 +167,7 @@ class ForumController extends AbstractController implements ControllerInterface
                     "utilisateur_id" => $idUser
                 ];
                 $postManager->add($postData);
-                
-                header('Location: index.php?ctrl=forum&action=listPosts&id='.$idTopic);
+                $this->redirectTo('forum','listPosts',$idTopic);
             }
             
         }

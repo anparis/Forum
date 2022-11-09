@@ -47,7 +47,7 @@
                         ];
 
                         $userManager->add($userData);
-                        header('Location: index.php?ctrl=home');
+                        $this->redirectTo('home');
                     }
                     else
                         echo "email ou pseudo déjà utilisé";
@@ -81,8 +81,7 @@
                     if($isMdp){
                         Session::setUser($getUser);
                         // $user = $session::getUser();
-
-                        header('Location: index.php?ctrl=home');
+                        $this->redirectTo('home');
                     }
                 }
             }
