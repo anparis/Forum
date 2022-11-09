@@ -19,7 +19,6 @@
         }
 
         public function addUtilisateurs(){
-            
             if(isset($_POST['submitUser'])){
                 $pseudo = filter_input(INPUT_POST, "pseudo", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL, FILTER_SANITIZE_EMAIL);
@@ -56,7 +55,7 @@
                     echo "Une erreur est survenu";
             }
             return [
-                "view" => VIEW_DIR . "security/addUtilisateurs.php",
+                "view" => VIEW_DIR . "security/addUtilisateurs.php"
             ];
         }
 
@@ -71,19 +70,24 @@
 
                     $getMdp = $userManager->getMdpByEmail($email);
                     $getUser = $userManager->getUserByEmail($email);
-                    die;
-                    // return true if corresponding
+                    // password_verify return true if corresponding
                     $isMdp = password_verify($mdp, $getMdp['mdp']);
 
                     if($isMdp){
                         Session::setUser($getUser);
-                        // $user = $session::getUser();
                         $this->redirectTo('home');
                     }
                 }
             }
             return [
-                "view" => VIEW_DIR . "security/loginUtilisateurs.php",
+                "view" => VIEW_DIR . "security/loginUtilisateurs.php"
+            ];
+        }
+
+        public function logoutUtilisateurs(){
+            $_SESSION['user']=null;
+            return[
+                "view" => VIEW_DIR . "home.php"
             ];
         }
     }

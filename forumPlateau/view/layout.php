@@ -18,24 +18,14 @@
             <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
             <header>
                 <nav>
-                    <div id="nav-left">
-                        <a href="/">Accueil</a>
-                        <?php
-                        if(App\Session::isAdmin()){
-                            ?>
-                            <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
-                          
-                            <?php
-                        }
-                        ?>
-                    </div>
+                    
                     <div id="nav-right">
                     <?php
                         
                         if(App\Session::getUser()){
                             ?>
                             <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                            <a href="/security/logout.html">Déconnexion</a>
+                            <a href="index.php?ctrl=security&action=logoutUtilisateurs">Déconnexion</a>
                             <?php
                         }
                         else{

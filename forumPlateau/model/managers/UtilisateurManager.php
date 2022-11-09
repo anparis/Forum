@@ -35,5 +35,6 @@
         public function getUserByEmail($email){
             $sqlUser = "SELECT * FROM ".$this->tableName." WHERE email = :email";
             return($this->getOneOrNullResult(DAO::select($sqlUser,['email' => $email],false),$this->className));
+            // return(DAO::select($sqlUser,['email' => $email],false));
         }
     }

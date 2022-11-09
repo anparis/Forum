@@ -3,7 +3,6 @@
     // session_destroy();
     
     class Session{
-
         private static $categories = ['error', 'success'];
 
         /**
