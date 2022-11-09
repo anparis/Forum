@@ -71,7 +71,6 @@ class ForumController extends AbstractController implements ControllerInterface
                 ]
             ];
         } else {
-
             return [
                 "view" => VIEW_DIR . "forum/listPosts.php",
                 "data" => [
@@ -104,8 +103,15 @@ class ForumController extends AbstractController implements ControllerInterface
 
     public function addCategories()
     {
-        $categorieManager = new CategorieManager();
-        $categorieManager->addCategories();
+        if(isset($_POST['submitCategorie'])){
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if($nom){
+                $categorieManager = new CategorieManager();
+                $categorieManager->add(["nom"=>$nom]);
+                header('Location: index.php?ctrl=forum&action=listCategories');
+                die;
+            }
+        }
         return [
             "view" => VIEW_DIR . "forum/addCategories.php",
         ];
@@ -113,8 +119,36 @@ class ForumController extends AbstractController implements ControllerInterface
 
     public function addTopics()
     {
-        $topicManager = new TopicManager();
-        $topicManager->addTopics();
+        if(isset($_POST['submitTopic'])){
+            //need to add list of categories to choose from in addTopics
+            $idCategorie = 2;
+            $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $statut = filter_input(INPUT_POST, "statut", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $idUser = 1;
+
+            if($idCategorie && $text && $titre && $statut && $idUser){
+                $topicManager = new TopicManager();
+                // Array preparation to inject data in DB with add function
+                $topicData = [
+                    "titre" => $titre,
+                    "statut" => (int) $statut,
+                    "categorie_id" => $idCategorie,
+                    "utilisateur_id" => $idUser
+                ];
+                //add function return last insert id
+                $lastIdTopicInsert = $topicManager->add($topicData);
+
+                $postManager = new PostManager;
+                $postData = [
+                    "text" => $text,
+                    "topic_id" =>  $lastIdTopicInsert,
+                    "utilisateur_id" => $idUser
+                ];
+                $postManager->add($postData);
+                header('Location: index.php?ctrl=forum&action=listTopics');
+            } 
+        }
         return [
             "view" => VIEW_DIR . "forum/addTopics.php",
         ];
@@ -122,8 +156,26 @@ class ForumController extends AbstractController implements ControllerInterface
 
     public function addPosts()
     {
-        $postManager = new PostManager();
-        $postManager->addPosts();
+        if(isset($_POST['submitPost'])){
+            //need to add list of categories to choose from in addTopics
+            $idTopic = $_GET['id'];
+            $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $idUser = 1;
+
+            if($idTopic && $text && $idUser){
+                $postManager = new PostManager();
+                // Array preparation to inject data in DB with add function
+                $postData = [
+                    "text" => $text,
+                    "topic_id" => $idTopic,
+                    "utilisateur_id" => $idUser
+                ];
+                $postManager->add($postData);
+                
+                header('Location: index.php?ctrl=forum&action=listPosts&id='.$idTopic);
+            }
+            
+        }
         return [
             "view" => VIEW_DIR . "forum/listPostsByTopics.php",
         ];
