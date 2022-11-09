@@ -18,10 +18,12 @@
             <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
             <header>
                 <nav>
-                    
+                <div id="nav-left">
+                        <a href="/AP_exos/Forum/forumPlateau/">Accueil</a>
+
+                    </div>
                     <div id="nav-right">
                     <?php
-                        
                         if(App\Session::getUser()){
                             ?>
                             <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>

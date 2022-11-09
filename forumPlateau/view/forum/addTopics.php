@@ -1,4 +1,5 @@
 <?php
+$categories = $result["data"]['categories'];
 
 ?>
 <h1>Nouveau Sujet</h1>
@@ -8,6 +9,16 @@
         <label>
             Titre :<br>
             <input type="text" name="titre">
+        </label>
+    </p>
+    <p>
+        <label for="listCategories">
+        <select name="idCategorie" id="listCategories">
+            <?php
+                foreach($categories as $categorie ){?>
+                    <option value=<?= $categorie->getId() ?>><?=$categorie->getNom()?></option>
+            <?php }?>
+            </select>
         </label>
     </p>
     <p>

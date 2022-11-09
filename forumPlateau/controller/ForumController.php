@@ -115,9 +115,10 @@ class ForumController extends AbstractController implements ControllerInterface
 
     public function addTopics()
     {
+        $categorieManager = new CategorieManager();
+        
         if(isset($_POST['submitTopic'])){
-            //need to add list of categories to choose from in addTopics
-            $idCategorie = 2;
+            $idCategorie = filter_input(INPUT_POST, "idCategorie", FILTER_SANITIZE_NUMBER_INT,FILTER_VALIDATE_INT);
             $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $statut = filter_input(INPUT_POST, "statut", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -147,6 +148,9 @@ class ForumController extends AbstractController implements ControllerInterface
         }
         return [
             "view" => VIEW_DIR . "forum/addTopics.php",
+            "data" => [
+                "categories" => $categorieManager->findAll(["nom", "ASC"])
+            ]
         ];
     }
 
