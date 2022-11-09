@@ -1,6 +1,6 @@
 <?php
     namespace App;
-    //session_destroy();
+    // session_destroy();
     
     class Session{
 

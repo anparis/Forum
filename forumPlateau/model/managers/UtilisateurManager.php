@@ -61,19 +61,21 @@
 
                 if($email && $mdp)
                 {
-                    $sqlMdp = "SELECT mdp FROM utilisateur WHERE email = :email";
-                    $sqlUser = "SELECT pseudo FROM utilisateur WHERE email = :email";
+                    $sqlMdp = "SELECT mdp FROM ".$this->tableName." WHERE email = :email";
+                    $sqlUser = "SELECT * FROM ".$this->tableName." WHERE email = :email";
 
                     $getMdp = $this->getSingleScalarResult(DAO::select($sqlMdp,['email' => $email]));
-                    $getUser = $this->getSingleScalarResult(DAO::select($sqlUser,['email' => $email]));
-                    // return true if corresponding or false if not
+                    $getUser = $this->getOneOrNullResult(DAO::select($sqlUser,['email' => $email],false),$this->className);
+                    var_dump(DAO::select($sqlUser,['email' => $email]));
+                    var_dump($getUser);
+                    die;
+                    // return true if corresponding
                     $isMdp = password_verify($mdp, $getMdp['mdp']);
 
                     if($isMdp){
-                        $session = new Session();
-                        $session::setUser($getUser['pseudo']);
+                        Session::setUser($getUser);
                         // $user = $session::getUser();
-                        die;
+
                         header('Location: index.php?ctrl=home');
                     }
                 }

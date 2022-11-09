@@ -6,6 +6,7 @@
     final class Utilisateur extends Entity{
 
         private $id;
+        private $email;
         private $mdp;
         private $pseudo;
         private $dateInscription;
