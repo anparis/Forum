@@ -22,6 +22,16 @@ $topics = $result["data"]['topics'];
                 <?= $topic->getCategorie()->getNom() ?>
             </a>
         </section>
+        <section id="statut">
+            <p><?php 
+            if($topic->getStatut()){
+                echo "<p><span class='fas fa-lock-open'></span> publique</p>";
+            }
+            else
+                echo "<p><span class='fas fa-lock'></span> privée</p>";
+              ?>
+            </p>
+        </section>
     </section>
 <?php
 }

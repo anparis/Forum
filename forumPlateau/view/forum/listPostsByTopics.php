@@ -12,9 +12,9 @@ $idTopic = $topics->getId();
 foreach($posts as $post){
     ?>
     <section id="postllist">
+        <p><?=$post->getText()?></p>
         <p>Posted by <?=$post->getUtilisateur()->getPseudo()?></p>
         <p><?=$post->getDatePost()?></p>
-        <p><?=$post->getText()?></p>
         <!-- If connected the user can edit or delete his posts -->
         <?php if(isset($_SESSION['user']) && ($_SESSION['user']->getEmail() == $post->getUtilisateur()->getEmail())){ ?>
             <section id="modify">
