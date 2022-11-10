@@ -15,17 +15,19 @@ foreach($posts as $post){
         <p>Posted by <?=$post->getUtilisateur()->getPseudo()?></p>
         <p><?=$post->getDatePost()?></p>
         <p><?=$post->getText()?></p>
+        <!-- If connected the user can edit or delete his posts -->
+        <?php if(isset($_SESSION['user']) && ($_SESSION['user']->getEmail() == $post->getUtilisateur()->getEmail())){ ?>
+            <section id="modify">
+                <a href="index.php?ctrl=forum&action=editPosts&id=<?= $post->getId()?>">Editer</a>
+                <a href="delete">Supprimer</a>
+            </section>
+        <?php } ?>
     </section>
     <?php }?>
     <br>
 
-<?php if(isset($_SESSION['user'])){ ?>
-    <section id="modify">
-        <a href="edit">Editer</a>
-        <a href="delete">Supprimer</a>
-    </section>
 
-<?php } else{
+<?php 
     if($statutTopic){ ?>
     <form action="index.php?ctrl=forum&action=addPosts&id=<?=$idTopic?>" method="post">
     <p>
@@ -39,5 +41,5 @@ foreach($posts as $post){
     <?php }
     else{ ?>
     <h1>Statut Topic : private</h1>
-    <?php } }?>
+    <?php } ?>
 

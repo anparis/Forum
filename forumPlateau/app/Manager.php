@@ -67,6 +67,19 @@
                 die();
             }
         }
+
+        // public function update($id, $data){
+        //     $sql = "UPDATE ".$this->tableName."
+        //             ";
+        //     try{
+        //         // return the last insert id using insert static method from DAO
+        //         return DAO::insert($sql);
+        //     }
+        //     catch(\PDOException $e){
+        //         echo $e->getMessage();
+        //         die();
+        //     }
+        // }
         
         public function delete($id){
             $sql = "DELETE FROM ".$this->tableName."

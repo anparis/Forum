@@ -179,4 +179,28 @@ class ForumController extends AbstractController implements ControllerInterface
             "view" => VIEW_DIR . "forum/listPostsByTopics.php",
         ];
     }
+
+    //  Edition methods
+
+    public function editPosts(){
+        if(isset($_GET['id'])){
+            $postManager = new PostManager();
+            return [
+                "view" => VIEW_DIR . "forum/editPosts.php",
+                "data" => [
+                    "post" => $postManager->findOneById($_GET['id'])
+                ]
+            ];
+        }
+        else
+            return [
+                "view" => VIEW_DIR . "forum/editPosts.php",
+            ];
+    }
+
+    //  Update db methods
+
+    public function update(){
+        $this->redirectTo('forum','listTopics');
+    }
 }
