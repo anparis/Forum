@@ -4,7 +4,7 @@ $categories = $result["data"]['categories'];
 ?>
 <h1>Nouveau Sujet</h1>
 
-<form action="index.php?ctrl=forum&action=addTopics" method="post">
+<form action="index.php?ctrl=forum&action=addTopics&id=<?= $_SESSION['user']->getId() ?>" method="post">
     <p>
         <label>
             Titre :<br>

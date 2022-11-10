@@ -122,7 +122,7 @@ class ForumController extends AbstractController implements ControllerInterface
             $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $statut = filter_input(INPUT_POST, "statut", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $idUser = 1;
+            $idUser = $_GET['id'];
 
             if($idCategorie && $text && $titre && $statut && $idUser){
                 $topicManager = new TopicManager();

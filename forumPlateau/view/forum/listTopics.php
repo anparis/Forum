@@ -3,10 +3,13 @@
 $topics = $result["data"]['topics'];
 ?>
 
+
 <h1>liste topics</h1>
 
-<?php
-foreach ($topics as $topic) {
+<?php if(isset($_SESSION['user'])){?>
+    <a href='index.php?ctrl=forum&action=addTopics'>Ajouter un sujet</a>
+    
+<?php } foreach ($topics as $topic) {
 ?>
     <section id="topiclist">
         <a href='index.php?ctrl=forum&action=listPosts&id=<?= $topic->getId() ?>'>
@@ -23,4 +26,3 @@ foreach ($topics as $topic) {
 <?php
 }
 ?>
-<a href='index.php?ctrl=forum&action=addTopics'>Ajouter un sujet</a>

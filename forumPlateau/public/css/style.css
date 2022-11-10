@@ -1,1 +1,33 @@
-/*# sourceMappingURL=style.css.map */
+* {
+  box-sizing: border-box;
+}
+
+#topiclist {
+  margin: 30px;
+  border: 1px dashed #4988bf;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 2px 20px;
+}
+#topiclist a {
+  text-decoration: inherit;
+}
+
+#categorielist {
+  padding: 5px;
+  margin: 10px 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 5px;
+  background-color: #4988bf;
+  font-size: 100%;
+}
+#categorielist a {
+  color: white;
+  text-decoration: none;
+}
+#categorielist :hover {
+  opacity: 0.6;
+}/*# sourceMappingURL=style.css.map */

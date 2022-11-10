@@ -1,2 +1,31 @@
-$primary: #2D70B7;
+$primary: #4988bf;
 
+*{
+    box-sizing: border-box;
+}
+
+#topiclist{
+    margin: 30px;
+    border: 1px dashed $primary;
+    width: fit-content;
+    padding: 2px 20px;
+    a{
+        text-decoration: inherit;
+    }
+}
+
+#categorielist{
+    padding: 5px;
+    margin: 10px 0;
+    width: fit-content;
+    border-radius: 5px;
+    background-color: $primary;
+    font-size: 100%;
+    a{
+        color: white;
+        text-decoration: none;
+    }
+    :hover{
+        opacity: 0.6;
+    }    
+}
