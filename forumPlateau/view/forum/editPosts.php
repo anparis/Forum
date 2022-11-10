@@ -6,15 +6,13 @@ $idPost = $post->getId();
 
 <h1>Editeur</h1>
 
-<form action="index.php?ctrl=forum&action=update&id=<?= $idPost ?>" method="post">
+<form action="index.php?ctrl=forum&action=editPost&id=<?= $idPost ?>" method="post">
 <p>
     <label>Message a editer : </label>
     <br>
-    <textarea name="text" cols="30" rows="10">
-        <?= $post->getText()?>
-    </textarea>
+    <textarea name="text" cols="45" rows="5"><?= $post->getText()?></textarea>
 </p>
-<input type="submit" name="submitPost" value="Valider">
-
+    <input type="hidden" name="idTopic" value=<?= $post->getTopic()->getId() ?> >
+<input type="submit" name="submitChangedPost" value="Valider">
 
 </form>

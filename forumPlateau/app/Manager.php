@@ -71,10 +71,9 @@
         public function update($id, $data){
             $key =implode('', array_keys($data));
             $value = implode('', array_values($data));
-            
-            $sql = "UPDATE ".$this->tableName." SET $key = $value WHERE id_".$this->tableName." = :id";
+
+            $sql = "UPDATE ".$this->tableName." SET $key = '$value' WHERE id_".$this->tableName." = :id";
             try{
-                // return the last insert id using insert static method from DAO
                 return DAO::update($sql, ['id' => $id]);
             }
             catch(\PDOException $e){
