@@ -23,13 +23,24 @@ $topics = $result["data"]['topics'];
             </a>
         </section>
         <section id="statut">
-            <p><?php 
+            <p>
+            <?php if($topic->getUtilisateur()->getEmail()==$_SESSION['user']->getEmail()){ 
             if($topic->getStatut()){
-                echo "<p><span class='fas fa-lock-open'></span> publique</p>";
-            }
-            else
-                echo "<p><span class='fas fa-lock'></span> privée</p>";
-              ?>
+                echo "<p><span class='fas fa-lock-open'></span> publique</p>";?>
+                <a href='index.php?ctrl=forum&action=updateStatut&id=<?= $topic->getId() ?>'>lock</a>
+            <?php }
+            else {
+                echo "<p><span class='fas fa-lock'></span> privée</p>";?>
+                <a href='index.php?ctrl=forum&action=updateStatut&id=<?= $topic->getId() ?>'>unlock</a>
+            <?php } }
+            else{ ?>
+                <?php if($topic->getStatut()){
+                    echo "<p><span class='fas fa-lock-open'></span> publique</p>";?>
+                <?php }
+                else {
+                    echo "<p><span class='fas fa-lock'></span> privée</p>";
+                }
+            } ?>
             </p>
         </section>
     </section>
