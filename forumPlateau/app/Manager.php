@@ -68,18 +68,20 @@
             }
         }
 
-        // public function update($id, $data){
-        //     $sql = "UPDATE ".$this->tableName."
-        //             ";
-        //     try{
-        //         // return the last insert id using insert static method from DAO
-        //         return DAO::insert($sql);
-        //     }
-        //     catch(\PDOException $e){
-        //         echo $e->getMessage();
-        //         die();
-        //     }
-        // }
+        public function update($id, $data){
+            $key =implode('', array_keys($data));
+            $value = implode('', array_values($data));
+            
+            $sql = "UPDATE ".$this->tableName." SET $key = $value WHERE id_".$this->tableName." = :id";
+            try{
+                // return the last insert id using insert static method from DAO
+                return DAO::update($sql, ['id' => $id]);
+            }
+            catch(\PDOException $e){
+                echo $e->getMessage();
+                die();
+            }
+        }
         
         public function delete($id){
             $sql = "DELETE FROM ".$this->tableName."

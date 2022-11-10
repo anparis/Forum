@@ -27,11 +27,11 @@ $topics = $result["data"]['topics'];
             <?php if($topic->getUtilisateur()->getEmail()==$_SESSION['user']->getEmail()){ 
             if($topic->getStatut()){
                 echo "<p><span class='fas fa-lock-open'></span> publique</p>";?>
-                <a href='index.php?ctrl=forum&action=updateStatut&id=<?= $topic->getId() ?>'>lock</a>
+                <a href='index.php?ctrl=forum&action=lockTopic&id=<?= $topic->getId() ?>'>lock</a>
             <?php }
             else {
                 echo "<p><span class='fas fa-lock'></span> privée</p>";?>
-                <a href='index.php?ctrl=forum&action=updateStatut&id=<?= $topic->getId() ?>'>unlock</a>
+                <a href='index.php?ctrl=forum&action=unlockTopic&id=<?= $topic->getId() ?>'>unlock</a>
             <?php } }
             else{ ?>
                 <?php if($topic->getStatut()){

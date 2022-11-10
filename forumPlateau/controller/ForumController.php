@@ -200,7 +200,30 @@ class ForumController extends AbstractController implements ControllerInterface
 
     //  Update db methods
 
-    public function update(){
+    // public function editPost(){
+    //     if(isset($_GET['id'])){
+    //         $postManager = new PostManager();
+    //         $data = ['statut'=> 0];
+    //         $postManager->update($_GET['id'], $data);
+    //     }
+    //     $this->redirectTo('forum','listTopics');
+    // }
+
+    public function lockTopic(){
+        if(isset($_GET['id'])){
+            $topicManager = new TopicManager();
+            $data = ['statut'=> 0];
+            $topicManager->update($_GET['id'], $data);
+        }
+        $this->redirectTo('forum','listTopics');
+    }
+
+    public function unlockTopic(){
+        if(isset($_GET['id'])){
+            $topicManager = new TopicManager();
+            $data = ['statut'=> 1];
+            $topicManager->update($_GET['id'], $data);
+        }
         $this->redirectTo('forum','listTopics');
     }
 }
