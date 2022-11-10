@@ -9,7 +9,9 @@ $topics = $result["data"]['topics'];
 <?php if(isset($_SESSION['user'])){?>
     <a href='index.php?ctrl=forum&action=addTopics'>Ajouter un sujet</a>
     
-<?php } foreach ($topics as $topic) {
+<?php }
+
+ foreach ($topics as $topic) {
 ?>
     <section id="topiclist">
         <a href='index.php?ctrl=forum&action=listPosts&id=<?= $topic->getId() ?>'>
@@ -32,7 +34,15 @@ $topics = $result["data"]['topics'];
             else {
                 echo "<p><span class='fas fa-lock'></span> privée</p>";?>
                 <a href='index.php?ctrl=forum&action=unlockTopic&id=<?= $topic->getId() ?>'>unlock</a>
-            <?php } }
+            <?php } ?>
+
+            <section id="modify">
+                <p>
+                <a href="index.php?ctrl=forum&action=editTopics&id=<?= $idTopic ?>">Editer</a>
+                <a href="index.php?ctrl=forum&action=delTopics&id=<?= $idTopic ?>">Supprimer</a>
+                </p>
+            </section>
+            <?php }
             else{ ?>
                 <?php if($topic->getStatut()){
                     echo "<p><span class='fas fa-lock-open'></span> publique</p>";?>

@@ -6,7 +6,7 @@ $idPost = $post->getId();
 
 <h1>Editeur</h1>
 
-<form action="index.php?ctrl=forum&action=editPost&id=<?= $idPost ?>" method="post">
+<form action="index.php?ctrl=forum&action=updatePost&id=<?= $idPost ?>" method="post">
 <p>
     <label>Message a editer : </label>
     <br>

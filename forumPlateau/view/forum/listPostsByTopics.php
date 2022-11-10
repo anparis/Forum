@@ -10,12 +10,8 @@ $idTopic = $topics->getId();
 
 <?php if(isset($_SESSION['user'])){ ?>
     <?php if(($_SESSION['user']->getEmail() == $topics->getUtilisateur()->getEmail())){ ?>
-    <section id="modify">
-        <a href="index.php?ctrl=forum&action=editTopics&id=<?= $idTopic ?>">Editer</a>
-        <a href="delete">Supprimer</a>
-    </section>
     <hr>
-    <?php
+    <?php if($posts){
     foreach($posts as $post){
         ?>
         <section id="postllist">
@@ -23,13 +19,13 @@ $idTopic = $topics->getId();
             <p>Posted by <?=$post->getUtilisateur()->getPseudo()?></p>
             <p><?=$post->getDatePost()?></p>
             <!-- If connected the user can edit or delete his posts -->
-            
                 <section id="modify">
                     <a href="index.php?ctrl=forum&action=editPosts&id=<?= $post->getId()?>">Editer</a>
-                    <a href="delete">Supprimer</a>
+                    <a href="index.php?ctrl=forum&action=delPosts&id=<?= $post->getId()?>">Supprimer</a>
                 </section>
         </section>
-    <?php } ?>
+    <?php } 
+    } else echo "Aucun messages sur ce sujet" ?>
     <?php } 
     if($statutTopic){ ?>
     <form action="index.php?ctrl=forum&action=addPosts&id=<?=$idTopic?>" method="post">

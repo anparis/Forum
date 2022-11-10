@@ -10,6 +10,7 @@ use Model\Managers\TopicManager;
 use Model\Managers\PostManager;
 use Model\Managers\CategorieManager;
 use Model\Managers\UtilisateurManager;
+use PDO;
 
 class ForumController extends AbstractController implements ControllerInterface
 {
@@ -198,18 +199,50 @@ class ForumController extends AbstractController implements ControllerInterface
             ];
     }
 
+    public function editTopics(){
+        var_dump("hello");die;
+        if(isset($_GET['id'])){
+            $topicManager = new TopicManager();
+            return [
+                "view" => VIEW_DIR . "forum/editTopics.php",
+                "data" => [
+                    "topic" => $topicManager->findOneById($_GET['id'])
+                ]
+            ];
+        }
+        else
+            return [
+                "view" => VIEW_DIR . "forum/editTopics.php",
+            ];
+    }
+
     //  Update db methods
 
-    public function editPost(){
+    public function updatePost(){
         if(isset($_GET['id']) && isset($_POST['submitChangedPost'])){
             $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $idTopic = $_POST['idTopic'];
 
-            $postManager = new PostManager();
-            $data = ['text' => $text];
-            $postManager->update($_GET['id'], $data);
+            if($text && $idTopic){
+                $postManager = new PostManager();
+                $data = ['text' => $text];
+                $postManager->update($_GET['id'], $data);
+            }
         }
         $this->redirectTo('forum','listPosts', $idTopic);
+    }
+
+    public function updateTopic(){
+        if(isset($_GET['id']) && isset($_POST['submitChangedTopic'])){
+            $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if($titre){
+                $postManager = new PostManager();
+                $data = ['titre' => $titre];
+                $postManager->update($_GET['id'], $data);
+            }
+        }
+        $this->redirectTo('forum','listPosts', $_GET['id']);
     }
 
     public function lockTopic(){
@@ -229,4 +262,23 @@ class ForumController extends AbstractController implements ControllerInterface
         }
         $this->redirectTo('forum','listTopics');
     }
+
+    //  DELETE METHOD 
+    public function delPosts(){
+        if(isset($_GET['id'])){
+
+            $postManager = new PostManager();
+            $postManager->delete($_GET['id']);
+        }
+        $this->redirectTo('forum','listTopics');
+    }
+
+    // // if delete topic then delete every posts
+    // public function delTopics(){
+    //     if(isset($_GET['id'])){
+    //         $postTopic = new TopicManager();
+    //         $postTopic->delete($_GET['id']);
+    //     }
+    //     $this->redirectTo('forum','listTopics');
+    // }
 }
