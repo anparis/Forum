@@ -19,17 +19,22 @@
             $sql = "SELECT * FROM ".$this->tableName." WHERE post.topic_id = :id";
             return $this->getMultipleResults(
                 // calling DAO class and her select static method 
-                // take id to prepare it and execute it
+                // take id to prepare and then execute it
                 DAO::select($sql, ['id'=>$id]),
                 $this->className
             );
+        }
+
+        public function deletePostsByTopicId($id){
+            $sql = "DELETE FROM ".$this->tableName." WHERE post.topic_id = :id";
+            return DAO::delete($sql, ['id' => $id]);
         }
 
         public function findPostsByUserId($id){
             $sql = "SELECT * FROM ".$this->tableName." WHERE post.utilisateur_id = :id";
             return $this->getMultipleResults(
                 // calling DAO class and her select static method 
-                // take id to prepare it and execute it
+                // take id to prepare and then execute it
                 DAO::select($sql, ['id'=>$id]),
                 $this->className
             );

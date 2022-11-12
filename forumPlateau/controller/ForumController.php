@@ -200,7 +200,6 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
     public function editTopics(){
-        var_dump("hello");die;
         if(isset($_GET['id'])){
             $topicManager = new TopicManager();
             return [
@@ -237,9 +236,9 @@ class ForumController extends AbstractController implements ControllerInterface
             $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             if($titre){
-                $postManager = new PostManager();
+                $topicManager = new TopicManager();
                 $data = ['titre' => $titre];
-                $postManager->update($_GET['id'], $data);
+                $topicManager->update($_GET['id'], $data);
             }
         }
         $this->redirectTo('forum','listPosts', $_GET['id']);
@@ -273,12 +272,16 @@ class ForumController extends AbstractController implements ControllerInterface
         $this->redirectTo('forum','listTopics');
     }
 
-    // // if delete topic then delete every posts
-    // public function delTopics(){
-    //     if(isset($_GET['id'])){
-    //         $postTopic = new TopicManager();
-    //         $postTopic->delete($_GET['id']);
-    //     }
-    //     $this->redirectTo('forum','listTopics');
-    // }
+    public function delTopics(){
+        if(isset($_GET['id'])){
+            $topicManager = new TopicManager();
+            $postManager = new PostManager();
+
+            // if delete topic then delete every posts from the topic
+            $postManager->deletePostsByTopicId($_GET['id']);
+            $topicManager->delete($_GET['id']);
+
+        }
+        $this->redirectTo('forum','listTopics');
+    }
 }

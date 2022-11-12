@@ -38,8 +38,8 @@ $topics = $result["data"]['topics'];
 
             <section id="modify">
                 <p>
-                <a href="index.php?ctrl=forum&action=editTopics&id=<?= $idTopic ?>">Editer</a>
-                <a href="index.php?ctrl=forum&action=delTopics&id=<?= $idTopic ?>">Supprimer</a>
+                <a href='index.php?ctrl=forum&action=editTopics&id=<?= $topic->getId() ?>'>Editer</a>
+                <a href="index.php?ctrl=forum&action=delTopics&id=<?= $topic->getId() ?>">Supprimer</a>
                 </p>
             </section>
             <?php }
