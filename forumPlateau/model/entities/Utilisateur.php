@@ -11,6 +11,7 @@
         private $pseudo;
         private $dateInscription;
         private $role;
+        private $ban;
 
         public function __construct($data){         
             $this->hydrate($data);        
@@ -133,6 +134,16 @@
                 }
                 else 
                         return false;
+        }
+
+        public function getBan(){
+                return $this->ban;
+        }
+
+        public function setBan($ban){
+                $this->ban = $ban;
+
+                return $this;
         }
 
         public function __toString()

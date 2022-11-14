@@ -14,7 +14,7 @@ foreach($users as $user){ ?>
 
     <?php }
     else{ 
-        if($user->getRole() == 'ban'){ ?>
+        if($user->getBan()){ ?>
             [<?= $user->getRole() ?>] <a href="index.php?ctrl=forum&action=listPostsByUsers&id=<?= $user->getId()?>"><?= $user->getPseudo()." (".$user->getEmail().")" ?></a>
             <a href="index.php?ctrl=security&action=debanUsers&id=<?= $user->getId()?>">Débannir</a>
         <?php }

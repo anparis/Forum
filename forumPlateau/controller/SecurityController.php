@@ -129,7 +129,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
         if (Session::getUser()->getRole() == "admin") {
             $userManager = new UtilisateurManager();
 
-            $userManager->update($_GET['id'], ['role' => 'ban']);
+            $userManager->update($_GET['id'], ['ban' => 1]);
             $this->redirectTo('security', 'listUtilisateurs');
         }
     }
@@ -139,7 +139,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
         if (Session::getUser()->getRole() == "admin") {
             $userManager = new UtilisateurManager();
 
-            $userManager->update($_GET['id'], ['role' => 'user']);
+            $userManager->update($_GET['id'], ['ban' => 0]);
             $this->redirectTo('security', 'listUtilisateurs');
         }
     }

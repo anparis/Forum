@@ -7,7 +7,7 @@ $statutTopic = $topics->getStatut();
 <h1><?=$topics->getTitle()?></h1>
 <p>Created by <?=$topics->getUtilisateur()->getPseudo()?> the <?=$topics->getDateCreation()?></p>
 
-<?php if(isset($_SESSION['user'])){ ?>
+<?php if(isset($_SESSION['user']) && !($_SESSION['user']->getBan())){ ?>
     <?php ?>
     <hr>
     <?php if($posts){
@@ -55,12 +55,6 @@ else{ ?>
         <p>Posted by <?=$post->getUtilisateur()->getPseudo()?></p>
         <p><?=$post->getDatePost()?></p>
         <!-- If connected the user can edit or delete his posts -->
-        <?php if(isset($_SESSION['user']) && ($_SESSION['user']->getEmail() == $post->getUtilisateur()->getEmail())){ ?>
-            <section id="modify">
-                <a href="index.php?ctrl=forum&action=editPosts&id=<?= $post->getId()?>">Editer</a>
-                <a href="delete">Supprimer</a>
-            </section>
-        <?php } ?>
     </section>
     <?php }?>
     <br>

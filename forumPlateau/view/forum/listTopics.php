@@ -6,7 +6,7 @@ $topics = $result["data"]['topics'];
 
 <h1>liste topics</h1>
 
-<?php if (isset($_SESSION['user']) && $_SESSION['user']->getRole() != 'ban') {
+<?php if (isset($_SESSION['user']) && !$_SESSION['user']->getBan()) {
 ?>
     <a href='index.php?ctrl=forum&action=addTopics'>Ajouter un sujet</a>
 
