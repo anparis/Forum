@@ -126,6 +126,15 @@
                 return $this;
         }
 
+        // check if the role is admin or user
+        public function hasRole($role){
+                if($this->role == $role){
+                        return $this->role;
+                }
+                else 
+                        return false;
+        }
+
         public function __toString()
         {
                 return $this->getPseudo();

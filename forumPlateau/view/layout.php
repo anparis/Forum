@@ -20,13 +20,20 @@
                 <nav>
                 <div id="nav-left">
                         <a href="/AP_exos/Forum/forumPlateau/">Accueil</a>
-
+                        <?php
+                        if(App\Session::isAdmin()){
+                            ?>
+                            <a href="index.php?ctrl=security&action=listUtilisateurs">Voir la liste des gens</a>
+                            
+                            <?php
+                        }
+                        ?>
                     </div>
                     <div id="nav-right">
                     <?php
                         if(App\Session::getUser()){
                             ?>
-                            <a href="index.php?ctrl=security&action=viewProfile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                            <a href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                             <a href="index.php?ctrl=security&action=logoutUtilisateurs">Déconnexion</a>
                             <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a>
                             <?php
