@@ -13,6 +13,7 @@ foreach($posts as $post){ ?>
         <section id="postllist">
             <p>===</p>
             <p><?=$post->getDatePost()?></p>
+            <p><a href="index.php?ctrl=forum&action=listPosts&id=<?=$post->getTopic()->getId()?>">Aller vers sujet</a></p>
             <p><?=$post->getText()?></p>
         </section>
         <?php
