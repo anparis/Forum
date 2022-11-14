@@ -16,7 +16,8 @@ $statutTopic = $topics->getStatut();
         <section id="postllist">
             <p><?=$post->getText()?></p>
             <p>Posted by <?=$post->getUtilisateur()->getPseudo()?></p>
-            <p><?=$post->getDatePost()?></p>
+            <p><?php echo $post->getDatePost();?>
+            </p>
             <!-- If connected user OR admin => can edit or delete his posts -->
             <?php if(($_SESSION['user']->getEmail() == $topics->getUtilisateur()->getEmail()) || $_SESSION['user']->hasRole('admin')) {?>
                 <section id="modify">
@@ -33,7 +34,7 @@ $statutTopic = $topics->getStatut();
     <p>
         <label>
             Message :<br>
-            <textarea name="text" rows="5" cols="45"></textarea>        
+            <textarea name="text" rows="5" cols="45" placeholder="écrire sur ce sujet" required></textarea>        
         </label>
     </p>
     <input type="submit" name="submitPost" value="Answer">

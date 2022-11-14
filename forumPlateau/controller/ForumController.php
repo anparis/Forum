@@ -226,9 +226,9 @@ class ForumController extends AbstractController implements ControllerInterface
                 $postManager = new PostManager();
                 $data = ['text' => $text];
                 $postManager->update($_GET['id'], $data);
+                $this->redirectTo('forum','listPosts', $idTopic);
             }
         }
-        $this->redirectTo('forum','listPosts', $idTopic);
     }
 
     public function updateTopic(){
@@ -239,9 +239,9 @@ class ForumController extends AbstractController implements ControllerInterface
                 $topicManager = new TopicManager();
                 $data = ['titre' => $titre];
                 $topicManager->update($_GET['id'], $data);
+                $this->redirectTo('forum','listPosts', $_GET['id']);
             }
         }
-        $this->redirectTo('forum','listPosts', $_GET['id']);
     }
 
     public function lockTopic(){

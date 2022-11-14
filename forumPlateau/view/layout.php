@@ -19,7 +19,7 @@
             <header>
                 <nav>
                 <div id="nav-left">
-                        <a href="/AP_exos/Forum/forumPlateau/">Accueil</a>
+                        <a href="/AP_exos/Forum/forumPlateau/">Forum.ElanFormation</a>
                         <?php
                         if(App\Session::isAdmin()){
                             ?>

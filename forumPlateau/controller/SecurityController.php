@@ -48,9 +48,10 @@ class SecurityController extends AbstractController implements ControllerInterfa
                     ];
 
                     $userManager->add($userData);
+                    Session::addFlash('success', 'Votre compte a été crée');
                     $this->redirectTo('home');
-                } else Session::addFlash('erreur', 'EMAIL OU PSEUDO DEJA UTILISE');
-            } else Session::addFlash('erreur', 'LES MDP NE CORRESPONDENT PAS');
+                } else Session::addFlash('error', 'EMAIL OU PSEUDO DEJA UTILISE');
+            } else Session::addFlash('error', 'LES MDP NE CORRESPONDENT PAS');
         }
         return [
             "view" => VIEW_DIR . "security/addUtilisateurs.php"
@@ -73,11 +74,16 @@ class SecurityController extends AbstractController implements ControllerInterfa
                         // password_verify return true if corresponding
                         if (password_verify($mdp, $getMdp['mdp'])) {
                             Session::setUser($getUser);
+                            Session::addFlash('success', 'Bienvenue');
                             $this->redirectTo('home');
-                        } else Session::addFlash('erreur', 'Mot de passe incorrect');
-                    } else Session::addFlash('erreur', 'Cet email ne correspond à aucun compte');
-                } else Session::addFlash('erreur', 'Mot de passe incorrect');
-            } else Session::addFlash('erreur', 'Email incorrect');
+                        } else 
+                            Session::addFlash('error', 'Mot de passe incorrect');
+                    } else 
+                        Session::addFlash('error', 'Cet email ne correspond à aucun compte');
+                } else 
+                    Session::addFlash('error', 'Mot de passe incorrect');
+            } else 
+                Session::addFlash('error', 'Email incorrect');
         }
         return [
             "view" => VIEW_DIR . "security/loginUtilisateurs.php"
