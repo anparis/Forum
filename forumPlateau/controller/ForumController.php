@@ -161,7 +161,7 @@ class ForumController extends AbstractController implements ControllerInterface
             //need to add list of categories to choose from in addTopics
             $idTopic = $_GET['id'];
             $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $idUser = 1;
+            $idUser = Session::getUser()->getId();
 
             if($idTopic && $text && $idUser){
                 $postManager = new PostManager();
@@ -265,11 +265,13 @@ class ForumController extends AbstractController implements ControllerInterface
     //  DELETE METHOD 
     public function delPosts(){
         if(isset($_GET['id'])){
-
             $postManager = new PostManager();
+            $post = $postManager->findOneById($_GET['id']);
+            // keep the topic id in idTopic to redirect to the good topic after deletion
+            $idTopic = $post->getTopic()->getId();
             $postManager->delete($_GET['id']);
         }
-        $this->redirectTo('forum','listTopics');
+        $this->redirectTo('forum','listPosts',$idTopic);
     }
 
     public function delTopics(){
