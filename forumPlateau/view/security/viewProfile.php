@@ -2,7 +2,8 @@
 $posts = $result["data"]["posts"];
 
 ?>
-<h1>Profil de <?= $_SESSION['user'] ?></h1>
+<h1>Profil</h1>
+<p>Pseudo : <?= $_SESSION['user'] ?></p>
 <p>Email : <?= $_SESSION['user']->getEmail() ?></p>
 <?php 
 if($posts == NULL) {?>

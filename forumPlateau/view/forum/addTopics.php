@@ -2,34 +2,33 @@
 $categories = $result["data"]['categories'];
 
 ?>
-<h1>Nouveau Sujet</h1>
+<h1 class="form-title">Nouveau Sujet</h1>
 
-<form action="index.php?ctrl=forum&action=addTopics&id=<?= $_SESSION['user']->getId() ?>" method="post">
+<form class="form-topic" action="index.php?ctrl=forum&action=addTopics&id=<?= $_SESSION['user']->getId() ?>" method="post">
     <p>
-        <label>
-            Titre :<br>
+        <label class="f-w">
+            Titre :<br></label>
             <input type="text" name="titre">
-        </label>
     </p>
     <p>
-        <label for="listCategories">
+    <label class="f-w">
+            Catégories :<br></label>
         <select name="idCategorie" id="listCategories">
             <?php
                 foreach($categories as $categorie ){?>
                     <option value=<?= $categorie->getId() ?>><?=$categorie->getNom()?></option>
             <?php }?>
-            </select>
-        </label>
+        </select>
     </p>
     <p>
-        <label>
-            Message :<br>
-            <textarea name="text" rows="5" cols="33"></textarea>        
-        </label>
+        <label class="f-w" for="message">
+            Message :
+        </label><br>
+            <textarea name="text" id="message" rows="5" cols="33" placeholder="Description" require></textarea>        
     </p>
     <p>
         <fieldset>
-            Statut :<br>
+            <label class="f-w">Statut :</label><br>
             <label for="private">privée</label>
             <input type="radio" id="private" name="statut" value="0" checked>        
 
