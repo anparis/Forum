@@ -4,7 +4,7 @@ $topics = $result["data"]['topics'];
 ?>
 <?php if (isset($_SESSION['user']) && !$_SESSION['user']->getBan()) {
 ?>
-   <a href='index.php?ctrl=forum&action=addTopics'><button class="add-topic">+ Ajouter un sujet</button></a>
+   <a href='index.php?ctrl=forum&action=addTopics'><button class="add-topic-post">+ Ajouter un sujet</button></a>
     <?php
     foreach ($topics as $topic) {
     ?>
@@ -34,7 +34,7 @@ $topics = $result["data"]['topics'];
             </section>
 
             <?php if ($topic->getUtilisateur()->getEmail() == $_SESSION['user']->getEmail() || $_SESSION['user']->hasRole('admin')) { ?>
-                <section id="modify">
+                <section id="edit-del-post">
                     <a href='index.php?ctrl=forum&action=editTopics&id=<?= $topic->getId() ?>'>Editer</a>
                     <a href="index.php?ctrl=forum&action=delTopics&id=<?= $topic->getId() ?>">Supprimer</a>
                 </section>

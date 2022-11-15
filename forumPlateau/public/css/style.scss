@@ -132,7 +132,7 @@ article.public-article{
     color: $darkerkGray;
 }
 
-.add-topic{
+.add-topic-post{
     @extend %button;
     margin-bottom: 20px;
     background-color: $categorie-color;
@@ -154,10 +154,6 @@ article.public-article{
             text-align: right;
         }
     }
-    #modify{
-        font-size: 0.8rem;
-    }
-
     .topic-info{
         display: flex;
         flex-wrap: wrap;
@@ -167,10 +163,19 @@ article.public-article{
     }
 }
 
+#edit-del-post{
+    font-size: 0.8rem;
+}
+
 .topic-title{
     font-size: 1.2rem;
     font-weight: normal;
     color: $dark;
+}
+
+.post-list{
+    border-bottom: 1px solid $separator;
+    margin-bottom: 10px;
 }
 
 
@@ -186,6 +191,15 @@ article.public-article{
     :hover{
         opacity: 0.6;
     }    
+}
+
+#first-post{
+    margin: 20px;
+}
+
+p.answer{
+    margin-bottom: 10px;
+    font-size: large;
 }
 
 footer{
