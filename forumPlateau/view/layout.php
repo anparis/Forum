@@ -22,39 +22,45 @@
                         <a href="/AP_exos/Forum/forumPlateau/">Forum<span class="text-muted">.ElanFormation</span></a>
                         
                     </div>
-                    <button aria-label="Open menu" class="btn-menu" onclick="myFunction()">
+                    <button class="btn-menu">
                     <svg xmlns="http://www.w3.org/2000/svg" class="active" style="width: 32px; height: 32px; transform: rotate(0deg);">
                         <line x1="4.8" y1="9.6" x2="27.2" y2="9.6" ></line>
                         <line x1="27.2" y1="22.4" x2="4.8" y2="22.4" ></line>
                     </svg>
                     </button>
-                    <div id="nav-right">
-                    
-                    <?php
-                        if(App\Session::getUser()){
-                            ?>
-                            <a href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                    <button class="btn-close-menu">   
+                        <svg xmlns="http://www.w3.org/2000/svg" class="active" style="width: 32px; height: 32px; transform: rotate(-45deg);">
+                            <line x1="16" y1="0" x2="16" y2="32" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round"></line>
+                            <line x1="0" y1="16" x2="32" y2="16" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round"></line></svg>
+                    </button>
+                    <div class="nav-right">
                             <?php
-                                if(App\Session::isAdmin()){
-                                ?>
-                                <a href="index.php?ctrl=security&action=listUtilisateurs">Voir la liste des utilisateurs</a>
+                                if(App\Session::getUser()){
+                                    ?>
+                                    <a href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                                    <?php
+                                        if(App\Session::isAdmin()){
+                                        ?>
+                                        <a href="index.php?ctrl=security&action=listUtilisateurs">Voir la liste des utilisateurs</a>
+                                        <?php
+                                        }
+                                    ?>
+                                    <a href="index.php?ctrl=forum&action=listTopics">Topics</a>
+                                    <a href="index.php?ctrl=security&action=logoutUtilisateurs">Déconnexion</a>
+                                    <?php
+                                }
+                                else{
+                                    ?>
+                                <div class="mobile-nav">
+                                    <a class="topic-title" href="index.php?ctrl=forum&action=listTopics">Topics</a>
+                                    <a class="topic-title" href="index.php?ctrl=forum&action=listCategories">Categories</a>
+                                    <a class="topic-title" href="index.php?ctrl=forum&action=listPosts">Posts</a>
+                                    <a href="index.php?ctrl=security&action=loginUtilisateurs">Connexion</a>
+                                    <a href="index.php?ctrl=security&action=addUtilisateurs">Inscription</a>
+                                </div>
                                 <?php
-                            }
+                                }
                             ?>
-                            <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a>
-                            <a href="index.php?ctrl=security&action=logoutUtilisateurs">Déconnexion</a>
-                            <?php
-                        }
-                        else{
-                            ?>
-                            <a href="index.php?ctrl=security&action=loginUtilisateurs">Connexion</a>
-                            <a href="index.php?ctrl=security&action=addUtilisateurs">Inscription</a>
-                            <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a>
-                            <a href="index.php?ctrl=forum&action=listCategories">la liste des categories</a>
-                            <a href="index.php?ctrl=forum&action=listPosts">la liste des posts</a>
-                        <?php
-                        }
-                    ?>
                     </div>
                 </nav>
             </header>
@@ -89,6 +95,18 @@
             $(".ban-btn").on("click", function(){
                 return confirm("Etes-vous sûr de vouloir ban cet utilisateur?")
             })
+            $(".btn-close-menu").hide();
+            $(".btn-menu").on("click", function(){
+                $( '.nav-right' ).toggleClass('clicked');
+                $(".btn-close-menu").show();
+                $(".btn-menu").hide();
+            })
+            $(".btn-close-menu").on("click", function(){
+                $( '.nav-right' ).toggleClass('clicked');
+                $(".btn-close-menu").hide();
+                $(".btn-menu").show();
+            })
+
             tinymce.init({
                 selector: '.post',
                 menubar: false,
@@ -104,15 +122,6 @@
                 content_css: '//www.tiny.cloud/css/codepen.min.css'
             });
         })
-
-        function myFunction() {
-        var x = document.getElementById("nav-right");
-        if (x.style.display === "block") {
-            x.style.display = "none";
-        } else {
-            x.style.display = "block";
-        }
-        }
 
         /*
         $("#ajaxbtn").on("click", function(){
