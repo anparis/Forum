@@ -2,82 +2,80 @@
 
 $topics = $result["data"]['topics'];
 ?>
-
-
-<h1>liste topics</h1>
-
 <?php if (isset($_SESSION['user']) && !$_SESSION['user']->getBan()) {
 ?>
-    <a href='index.php?ctrl=forum&action=addTopics'>Ajouter un sujet</a>
-
+   <a href='index.php?ctrl=forum&action=addTopics'><button class="add-topic">+ Ajouter un sujet</button></a>
     <?php
-
     foreach ($topics as $topic) {
     ?>
-        <section id="topiclist">
-            <a href='index.php?ctrl=forum&action=listPosts&id=<?= $topic->getId() ?>'>
-                <p><?= $topic->getTitle() ?></p>
-            </a>
-            <p>Created by <a href="index.php?ctrl=forum&action=listPostsByUsers&id=<?= $topic->getUtilisateur()->getId() ?>"><?= $topic->getUtilisateur()->getPseudo() ?></a></p>
-            <p><?= $topic->getDateCreation() ?></p>
-            <section id="categorielist">
-                <a href='index.php?ctrl=forum&action=listCategories&id=<?= $topic->getCategorie()->getId() ?>'>
-                    <?= $topic->getCategorie()->getNom() ?>
+        <article id="topic-list">
+            <section class="topic-head">
+                <a href='index.php?ctrl=forum&action=listPosts&id=<?= $topic->getId() ?>'>
+                    <p class="topic-title"><?= $topic->getTitle() ?></p>
                 </a>
-            </section>
-            <section id="statut">
-                <p>
-                    <?php if ($topic->getUtilisateur()->getEmail() == $_SESSION['user']->getEmail() || $_SESSION['user']->hasRole('admin')) {
-                        if ($topic->getStatut()) {
-                            echo "<p><span class='fas fa-lock-open'></span> publique</p>"; ?>
-                            <a href='index.php?ctrl=forum&action=lockTopic&id=<?= $topic->getId() ?>'>lock</a>
+                <?php if ($topic->getUtilisateur()->getEmail() == $_SESSION['user']->getEmail() || $_SESSION['user']->hasRole('admin')) { ?>
+                    <section id="statut">
+                        <?php if ($topic->getStatut()) { ?>
+                            <a href='index.php?ctrl=forum&action=lockTopic&id=<?= $topic->getId() ?>'><span class='fas fa-lock-open'></span></a>
                         <?php } else {
-                            echo "<p><span class='fas fa-lock'></span> privée</p>"; ?>
-                            <a href='index.php?ctrl=forum&action=unlockTopic&id=<?= $topic->getId() ?>'>unlock</a>
+                        ?>
+                            <a href='index.php?ctrl=forum&action=unlockTopic&id=<?= $topic->getId() ?>'><span class='fas fa-lock'></span></a>
                         <?php } ?>
-
-                <section id="modify">
-                    <p>
-                        <a href='index.php?ctrl=forum&action=editTopics&id=<?= $topic->getId() ?>'>Editer</a>
-                        <a href="index.php?ctrl=forum&action=delTopics&id=<?= $topic->getId() ?>">Supprimer</a>
-                    </p>
-                </section>
-            <?php } else { ?>
-                <?php if ($topic->getStatut()) {
-                            echo "<p><span class='fas fa-lock-open'></span> publique</p>"; ?>
-            <?php } else {
-                            echo "<p><span class='fas fa-lock'></span> privée</p>";
+                    </section>
+                <?php } else { ?>
+                    <section id="statut">
+                        <?php if ($topic->getStatut()) {
+                            echo "<p><span class='fas fa-lock-open'></span></p>"; ?>
+                    <?php } else {
+                            echo "<p><span class='fas fa-lock'></span></p>";
                         }
                     } ?>
-            </p>
+                    </section>
             </section>
-        </section>
-<?php
-    }
-}
-else{
-foreach ($topics as $topic) {
-    ?>
-        <section id="topiclist">
-            <a href='index.php?ctrl=forum&action=listPosts&id=<?= $topic->getId() ?>'>
-                <p><?= $topic->getTitle() ?></p>
-            </a>
-            <p>Created by <a href="index.php?ctrl=forum&action=listPostsByUsers&id=<?= $topic->getUtilisateur()->getId() ?>"><?= $topic->getUtilisateur()->getPseudo() ?></a></p>
-            <p><?= $topic->getDateCreation() ?></p>
+
+            <?php if ($topic->getUtilisateur()->getEmail() == $_SESSION['user']->getEmail() || $_SESSION['user']->hasRole('admin')) { ?>
+                <section id="modify">
+                    <a href='index.php?ctrl=forum&action=editTopics&id=<?= $topic->getId() ?>'>Editer</a>
+                    <a href="index.php?ctrl=forum&action=delTopics&id=<?= $topic->getId() ?>">Supprimer</a>
+                </section>
+            <?php } ?>
+            <section class="topic-info">
+                <p>Posted by <a href="index.php?ctrl=forum&action=listPostsByUsers&id=<?= $topic->getUtilisateur()->getId() ?>"><?= $topic->getUtilisateur()->getPseudo() ?></a></p>
+                <p><?= $topic->getDateCreation() ?></p>
+            </section>
             <section id="categorielist">
                 <a href='index.php?ctrl=forum&action=listCategories&id=<?= $topic->getCategorie()->getId() ?>'>
                     <?= $topic->getCategorie()->getNom() ?>
                 </a>
             </section>
-            <section id="statut">
-                    
-                <?php if ($topic->getStatut()) {
-                            echo "<p><span class='fas fa-lock-open'></span> publique</p>"; ?>
-            <?php } else {
-                            echo "<p><span class='fas fa-lock'></span> privée</p>";
-                        }
-                 ?>
-            </p>
+
+        </article>
+    <?php
+    }
+} else {
+    foreach ($topics as $topic) {
+    ?>
+        <article id="topic-list">
+            <section class="topic-head">
+                <a href='index.php?ctrl=forum&action=listPosts&id=<?= $topic->getId() ?>'>
+                    <p class="topic-title f-w"><?= $topic->getTitle() ?></p>
+                </a>
+                <section id="statut">
+                    <?php if ($topic->getStatut()) {
+                        echo "<p><span class='fas fa-lock-open'></span></p>"; ?>
+                    <?php } else {
+                        echo "<p><span class='fas fa-lock'></span></p>";
+                    }
+                    ?>
+                </section>
             </section>
-        </section>
-    <?php } } ?>
+            <p>Posted by <a href="index.php?ctrl=forum&action=listPostsByUsers&id=<?= $topic->getUtilisateur()->getId() ?>"><?= $topic->getUtilisateur()->getPseudo() ?></a></p>
+            <p><?= $topic->getDateCreation() ?></p>
+            <section class="f-s" id="categorielist">
+                <a href='index.php?ctrl=forum&action=listCategories&id=<?= $topic->getCategorie()->getId() ?>'>
+                    <?= $topic->getCategorie()->getNom() ?>
+                </a>
+            </section>
+        </article>
+<?php }
+} ?>

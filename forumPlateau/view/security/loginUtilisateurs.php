@@ -1,16 +1,18 @@
-<h1>Formulaire de connexion</h1>
+<article class="public-article">
+<h1 class="form-title">Formulaire de connexion</h1>
 <form action="index.php?ctrl=security&action=loginUtilisateurs" method="post">
-    <p>
-        <label>
-            email :
-            <input type="email" name="email">
+    <div class="log-form">
+        <label for="email" class="form-label">
+           <p class="f-w">Email :</p> 
         </label>
-    </p>
-    <p>
-        <label>
-            mot de passe :
-            <input type="password" name="mdp" minlength=8>
+            <input type="email" name="email" id="email">
+    </div>
+    <div class="log-form">
+        <label for="password" class="form-label">
+            <p class="f-w">Mot de passe :</p>
         </label>
-    </p>
-    <input type="submit" name="submitLogin" value="Valider">
+            <input type="password" name="mdp" id="password" minlength=8>
+    </div>
+    <input type="submit" name="submitLogin" value="Connexion" class="login-btn">
 </form>
+</article>

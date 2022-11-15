@@ -105,7 +105,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
     {
         $postManager = new PostManager();
         return [
-            "view" => VIEW_DIR . "forum/viewProfile.php",
+            "view" => VIEW_DIR . "security/viewProfile.php",
             "data" => [
                 "posts" => $postManager->findPostsByUserId($_GET['id'])
             ]
@@ -117,7 +117,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
         $user = new UtilisateurManager();
 
         return [
-            "view" => VIEW_DIR . "forum/listUtilisateurs.php",
+            "view" => VIEW_DIR . "security/listUtilisateurs.php",
             "data" => [
                 "user" => $user->findAll(["dateInscription", "DESC"])
             ]

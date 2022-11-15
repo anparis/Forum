@@ -1,7 +1,6 @@
 <?php
 $posts = $result["data"]["posts"];
 
-// <?= count($posts) 
 ?>
 <h1>Profil de <?= $_SESSION['user'] ?></h1>
 <p>Email <?= $_SESSION['user']->getEmail() ?></p>

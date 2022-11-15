@@ -1,33 +1,176 @@
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
-#topiclist {
-  margin: 30px;
-  border: 1px dashed #4988bf;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding: 2px 20px;
+html, body {
+  height: 100%;
 }
-#topiclist a {
-  text-decoration: inherit;
+
+body {
+  color: rgb(13, 13, 13);
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+#categorielist, .add-topic, .login-btn {
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.login-btn {
+  background: #3dc06c;
+  color: white;
+  border: 1px solid rgba(35, 160, 80, 0.6);
+}
+
+.f-w {
+  font-weight: bold;
+}
+
+#wrapper {
+  position: relative;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #f8f9fa;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  border-bottom: 1px solid #d9dbdc;
+  padding: 14px 16px;
+}
+header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+header nav #nav-left a {
+  color: rgb(13, 13, 13);
+}
+header nav #nav-left a .text-muted {
+  color: #6c757d;
+}
+header nav .btn-menu {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+header nav #nav-right {
+  display: none;
+}
+
+#mainpage {
+  padding: 80px 10px;
+}
+
+line {
+  stroke: #6c757d;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+article.public-article {
+  margin-top: 20px;
+}
+article.public-article form .log-form {
+  margin: 20px 0;
+}
+article.public-article form .log-form > * {
+  width: 100%;
+}
+article.public-article form input {
+  border: 1px solid #d9dbdc;
+}
+
+.form-title {
+  font-size: 1.75rem;
+  font-weight: normal;
+  font-style: italic;
+  font-family: "Libre Baskerville", Georgia, serif;
+  color: #6c757d;
+}
+
+.add-topic {
+  margin-bottom: 20px;
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
+
+#topic-list {
+  margin-bottom: 30px;
+  width: 100%;
+  padding: 2px 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px 0px;
+}
+#topic-list .topic-head {
+  display: flex;
+  justify-content: space-between;
+}
+#topic-list .topic-head #statut {
+  font-size: 0.7rem;
+  margin-left: 4px;
+  text-align: right;
+}
+#topic-list #modify {
+  font-size: 0.8rem;
+}
+#topic-list .topic-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+#topic-list .topic-info p {
+  margin-right: 10px;
+}
+
+.topic-title {
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: rgb(13, 13, 13);
 }
 
 #categorielist {
-  padding: 5px;
-  margin: 10px 0;
+  padding: 2px 6px;
+  margin: 8px 0;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  border-radius: 5px;
-  background-color: #4988bf;
-  font-size: 100%;
+  background-color: #007bff;
 }
 #categorielist a {
   color: white;
-  text-decoration: none;
 }
 #categorielist :hover {
   opacity: 0.6;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+footer p {
+  padding: 8px 16px;
 }/*# sourceMappingURL=style.css.map */

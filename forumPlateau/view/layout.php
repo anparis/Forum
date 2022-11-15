@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="wrapper"> 
-       
+    
         <div id="mainpage">
             <!-- c'est ici que les messages (erreur ou succès) s'affichent-->
             <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
@@ -19,17 +19,23 @@
             <header>
                 <nav>
                 <div id="nav-left">
-                        <a href="/AP_exos/Forum/forumPlateau/">Forum.ElanFormation</a>
+                        <a href="/AP_exos/Forum/forumPlateau/">Forum<span class="text-muted">.ElanFormation</span></a>
                         <?php
                         if(App\Session::isAdmin()){
                             ?>
                             <a href="index.php?ctrl=security&action=listUtilisateurs">Voir la liste des gens</a>
-                            
                             <?php
                         }
                         ?>
                     </div>
+                    <button aria-label="Open menu" class="btn-menu" onclick="myFunction()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="active" style="width: 32px; height: 32px; transform: rotate(0deg);">
+                        <line x1="4.8" y1="9.6" x2="27.2" y2="9.6" ></line>
+                        <line x1="27.2" y1="22.4" x2="4.8" y2="22.4" ></line>
+                    </svg>
+                    </button>
                     <div id="nav-right">
+                    
                     <?php
                         if(App\Session::getUser()){
                             ?>
@@ -47,8 +53,6 @@
                             <a href="index.php?ctrl=forum&action=listPosts">la liste des posts</a>
                         <?php
                         }
-                   
-                        
                     ?>
                     </div>
                 </nav>
@@ -97,7 +101,14 @@
             });
         })
 
-        
+        function myFunction() {
+        var x = document.getElementById("nav-right");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+        }
 
         /*
         $("#ajaxbtn").on("click", function(){
