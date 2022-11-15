@@ -36,7 +36,7 @@ $topics = $result["data"]['topics'];
             <?php if ($topic->getUtilisateur()->getEmail() == $_SESSION['user']->getEmail() || $_SESSION['user']->hasRole('admin')) { ?>
                 <section id="edit-del-post">
                     <a href='index.php?ctrl=forum&action=editTopics&id=<?= $topic->getId() ?>'>Editer</a>
-                    <a href="index.php?ctrl=forum&action=delTopics&id=<?= $topic->getId() ?>">Supprimer</a>
+                    <a class="delete-btn" href="index.php?ctrl=forum&action=delTopics&id=<?= $topic->getId() ?>">Supprimer</a>
                 </section>
             <?php } ?>
             <section class="topic-info">

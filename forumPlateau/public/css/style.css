@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
   margin: 0;
@@ -29,7 +30,7 @@ a {
   color: #007bff;
 }
 
-#categorielist, .add-topic-post, .login-btn {
+#categorielist, .ban-btn, .add-topic-post, .login-btn {
   text-decoration: none;
   border-radius: 5px;
 }
@@ -38,6 +39,20 @@ a {
   background: #3dc06c;
   color: white;
   border: 1px solid rgba(35, 160, 80, 0.6);
+}
+
+.add-topic-post {
+  margin-bottom: 20px;
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
+
+.ban-btn {
+  color: white;
+  background-color: #fe2712;
+  padding: 3px;
+  border: 1px solid #b71c0e;
 }
 
 .f-w {
@@ -112,13 +127,6 @@ article.public-article form input {
   color: #6c757d;
 }
 
-.add-topic-post {
-  margin-bottom: 20px;
-  background-color: #007bff;
-  color: white;
-  border: 1px solid #007bff;
-}
-
 .form-topic p {
   margin: 20px 0;
 }
@@ -174,6 +182,13 @@ article.public-article form input {
 }
 #categorielist :hover {
   opacity: 0.6;
+}
+
+.user-list ul li {
+  margin: 10px 0;
+}
+.user-list ::marker {
+  content: "👤";
 }
 
 #first-post {

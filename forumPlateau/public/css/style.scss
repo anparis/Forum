@@ -1,4 +1,6 @@
 $categorie-color: #007bff;
+$del-color: #fe2712;
+$darkerRed: #b71c0e;
 $log-color: #3dc06c;
 $grayTheme: #f8f9fa;
 $separator: #d9dbdc;
@@ -42,11 +44,28 @@ a{
     border-radius: 5px;
 }
 
+// Different button styles :
 .login-btn{
     @extend %button;
     background: $log-color;
     color: white;
     border: 1px solid rgba(35,160,80,0.6);
+}
+
+.add-topic-post{
+    @extend %button;
+    margin-bottom: 20px;
+    background-color: $categorie-color;
+    color: white;
+    border: 1px solid $categorie-color;
+}
+
+.ban-btn{
+    @extend %button;
+    color: white;
+    background-color: $del-color;
+    padding: 3px;
+    border: 1px solid $darkerRed;
 }
 
 .f-w{
@@ -132,13 +151,7 @@ article.public-article{
     color: $darkerkGray;
 }
 
-.add-topic-post{
-    @extend %button;
-    margin-bottom: 20px;
-    background-color: $categorie-color;
-    color: white;
-    border: 1px solid $categorie-color;
-}
+
 
 // add topic form
 .form-topic{
@@ -198,6 +211,17 @@ article.public-article{
     :hover{
         opacity: 0.6;
     }    
+}
+
+.user-list{
+    ul{
+        li{
+            margin: 10px 0;
+        }
+    }
+    ::marker{
+        content: '👤';
+    }
 }
 
 #first-post{

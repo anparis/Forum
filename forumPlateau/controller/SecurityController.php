@@ -94,6 +94,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
     {
         if (isset($_SESSION['user'])) {
             $_SESSION['user'] = null;
+            Session::addFlash('success', 'Vous avez été déconnecté');
             return [
                 "view" => VIEW_DIR . "home.php"
             ];

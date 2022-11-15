@@ -59,15 +59,12 @@ else{ ?>
     <?php
     foreach($posts as $post){
     ?>
-    <section id="postllist">
+    <section class="post-list">
         <p><?=$post->getText()?></p>
         <p>Posted by <?=$post->getUtilisateur()->getPseudo()?></p>
         <p><?=$post->getDatePost()?></p>
-        <!-- If connected the user can edit or delete his posts -->
     </section>
     <?php }?>
     <br>
-
-
 <?php } ?>
 

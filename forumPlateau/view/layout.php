@@ -20,13 +20,7 @@
                 <nav>
                 <div id="nav-left">
                         <a href="/AP_exos/Forum/forumPlateau/">Forum<span class="text-muted">.ElanFormation</span></a>
-                        <?php
-                        if(App\Session::isAdmin()){
-                            ?>
-                            <a href="index.php?ctrl=security&action=listUtilisateurs">Voir la liste des gens</a>
-                            <?php
-                        }
-                        ?>
+                        
                     </div>
                     <button aria-label="Open menu" class="btn-menu" onclick="myFunction()">
                     <svg xmlns="http://www.w3.org/2000/svg" class="active" style="width: 32px; height: 32px; transform: rotate(0deg);">
@@ -40,8 +34,15 @@
                         if(App\Session::getUser()){
                             ?>
                             <a href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                            <a href="index.php?ctrl=security&action=logoutUtilisateurs">Déconnexion</a>
+                            <?php
+                                if(App\Session::isAdmin()){
+                                ?>
+                                <a href="index.php?ctrl=security&action=listUtilisateurs">Voir la liste des utilisateurs</a>
+                                <?php
+                            }
+                            ?>
                             <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a>
+                            <a href="index.php?ctrl=security&action=logoutUtilisateurs">Déconnexion</a>
                             <?php
                         }
                         else{
@@ -84,6 +85,9 @@
             })
             $(".delete-btn").on("click", function(){
                 return confirm("Etes-vous sûr de vouloir supprimer?")
+            })
+            $(".ban-btn").on("click", function(){
+                return confirm("Etes-vous sûr de vouloir ban cet utilisateur?")
             })
             tinymce.init({
                 selector: '.post',
