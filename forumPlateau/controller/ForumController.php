@@ -37,7 +37,7 @@ class ForumController extends AbstractController implements ControllerInterface
                 "view" => VIEW_DIR . "forum/listTopicsByCategories.php",
                 "data" => [
                     "categories" => $categorieManager->findOneById($_GET['id']),
-                    "topics" => $topicManager->findTopicsById($_GET['id'])
+                    "topics" => $topicManager->findTopicsByCatId($_GET['id'])
                 ]
             ];
         } else {

@@ -15,11 +15,21 @@
             parent::connect();
         }
 
-        public function findTopicsById($id){
+        public function findTopicsByCatId($id){
             $sql = "SELECT * FROM ".$this->tableName." t WHERE t.categorie_id = :id";
             return $this->getMultipleResults(
                 // calling DAO class and her select static method 
                 // take id to prepare it and execute it
+                DAO::select($sql, ['id'=>$id]),
+                $this->className
+            );
+        }
+
+        public function findTopicsByUserId($id){
+            $sql = "SELECT * FROM ".$this->tableName." t WHERE t.utilisateur_id = :id";
+            return $this->getMultipleResults(
+                // calling DAO class and her select static method 
+                // take id to prepare and then execute it
                 DAO::select($sql, ['id'=>$id]),
                 $this->className
             );
