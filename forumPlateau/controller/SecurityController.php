@@ -75,7 +75,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
                         if (password_verify($mdp, $getMdp['mdp'])) {
                             Session::setUser($getUser);
                             Session::addFlash('success', 'Bienvenue');
-                            $this->redirectTo('home');
+                            $this->redirectTo('forum','listTopics');
                         } else 
                             Session::addFlash('error', 'Mot de passe incorrect');
                     } else 
@@ -96,7 +96,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
             $_SESSION['user'] = null;
             Session::addFlash('success', 'Vous avez été déconnecté');
             return [
-                "view" => VIEW_DIR . "home.php"
+                "view" => VIEW_DIR . "listTopics.php"
             ];
         }
     }

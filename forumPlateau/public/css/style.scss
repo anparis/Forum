@@ -7,6 +7,7 @@ $separator: #d9dbdc;
 $darkerkGray: #6c757d;
 $dark: rgb(13, 13, 13);
 $blurred-bg: #ffffffd9;
+$shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px 0px;
 
 *{
     box-sizing: border-box;
@@ -42,6 +43,10 @@ a{
 %button{
     text-decoration: none;
     border-radius: 5px;
+}
+
+.d-b{
+    display: block;
 }
 
 // Different button styles :
@@ -195,7 +200,7 @@ article.public-article{
     margin-bottom: 30px;
     width: 100%;
     padding: 2px 20px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px 0px;
+    box-shadow: $shadow;
     .topic-head{
         display: flex;
         justify-content: space-between;
@@ -212,6 +217,21 @@ article.public-article{
         p{
             margin-right: 10px;
         }
+    }
+}
+
+.home{
+    margin-bottom: 20px;
+}
+
+.home-topics{
+    display: flex;
+    flex-wrap: wrap;
+    .first5-topics{
+        box-shadow: $shadow;
+        width: fit-content;
+        padding: 10px;
+        margin:10px
     }
 }
 

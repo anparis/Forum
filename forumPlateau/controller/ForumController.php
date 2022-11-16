@@ -19,9 +19,9 @@ class ForumController extends AbstractController implements ControllerInterface
     {
         $topicManager = new TopicManager();
         return [
-            "view" => VIEW_DIR . "forum/listTopics.php",
+            "view" => VIEW_DIR . "home.php",
             "data" => [
-                "topics" => $topicManager->findAll(["datecreation", "DESC"]),
+                "topics" => $topicManager->findLatestFive(["datecreation", "DESC"]),
             ]
         ];
     }

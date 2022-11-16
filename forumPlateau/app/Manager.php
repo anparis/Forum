@@ -28,6 +28,27 @@
                 $this->className
             );
         }
+
+        /**
+         * get the first five records of a table, sorted by optionnal field and order
+         * 
+         * @return Collection a collection of 5 objects hydrated by DAO, which are results of the request sent
+         */
+        public function findLatestFive($order = null){
+
+            $orderQuery = ($order) ?                 
+                "ORDER BY ".$order[0]. " ".$order[1] :
+                "";
+
+            $sql = "SELECT *
+                    FROM ".$this->tableName." a
+                    ".$orderQuery." LIMIT 5";
+
+            return $this->getMultipleResults(
+                DAO::select($sql), 
+                $this->className
+            );
+        }
        
         public function findOneById($id){
 

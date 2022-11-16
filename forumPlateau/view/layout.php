@@ -19,7 +19,7 @@
             <header>
                 <nav>
                 <div id="nav-left">
-                        <a href="/AP_exos/Forum/forumPlateau/">Forum<span class="text-muted">.ElanFormation</span></a>
+                        <a href="index.php?ctrl=home">Forum<span class="text-muted">.ElanFormation</span></a>
                         
                     </div>
                     <button class="btn-menu">
@@ -47,7 +47,7 @@
                                         <?php
                                         }
                                     ?>
-                                    <a class="topic-title" href="index.php?ctrl=forum&action=listTopics">Topics</a>
+                                    <a class="topic-title" href="index.php?ctrl=home">Home</a>
                                     <a class="topic-title" href="index.php?ctrl=forum&action=listCategories">Categories</a>
                                     <a class="topic-title" href="index.php?ctrl=forum&action=listPosts">Posts</a>
                                     <a href="index.php?ctrl=security&action=logoutUtilisateurs"><button class="ban-btn">Déconnexion</button></a>
@@ -58,7 +58,7 @@
                                 else{
                                     ?>
                                 <div class="mobile-nav">
-                                    <a class="topic-title" href="index.php?ctrl=forum&action=listTopics">Topics</a>
+                                    <a class="topic-title" href="index.php?ctrl=home">Home</a>
                                     <a class="topic-title" href="index.php?ctrl=forum&action=listCategories">Categories</a>
                                     <a class="topic-title" href="index.php?ctrl=forum&action=listPosts">Posts</a>
                                     <a href="index.php?ctrl=security&action=loginUtilisateurs">Connexion</a>

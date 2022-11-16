@@ -35,6 +35,10 @@ a {
   border-radius: 5px;
 }
 
+.d-b {
+  display: block;
+}
+
 .login-btn {
   background: #3dc06c;
   color: white;
@@ -184,6 +188,23 @@ article.public-article form input {
 }
 #topic-list .topic-info p {
   margin-right: 10px;
+}
+
+.home {
+  margin-bottom: 20px;
+}
+
+.home-topics {
+  display: flex;
+  flex-wrap: wrap;
+}
+.home-topics .first5-topics {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px 0px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+  margin: 10px;
 }
 
 #edit-del-post {
