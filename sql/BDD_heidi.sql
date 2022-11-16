@@ -83,6 +83,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `pseudo` varchar(50) NOT NULL,
   `dateInscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `role` varchar(50) NOT NULL,
+  `ban` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_utilisateur`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
@@ -90,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 /*!40000 ALTER TABLE `utilisateur` DISABLE KEYS */;
 INSERT INTO `utilisateur` (`id_utilisateur`, `email`, `mdp`, `pseudo`, `dateInscription`, `role`) VALUES
 	(1, 'james@orange.fr', 'harden', 'james', '2022-11-05 18:05:57', 'user'),
-	(4, 'll@s.fr', '$2y$10$Mwmawr7xadrEmZE0ScjvR.8wmgsysPE25HrEsTbsGWv0TR1xug5OW', 'hello', '2022-11-09 09:22:43', 'user');
+	(2, 'll@s.fr', '$2y$10$Mwmawr7xadrEmZE0ScjvR.8wmgsysPE25HrEsTbsGWv0TR1xug5OW', 'hello', '2022-11-09 09:22:43', 'user');
 /*!40000 ALTER TABLE `utilisateur` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
