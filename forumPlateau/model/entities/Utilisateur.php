@@ -12,6 +12,7 @@
         private $dateInscription;
         private $role;
         private $ban;
+        private $avatar;
 
         public function __construct($data){         
             $this->hydrate($data);        
@@ -142,6 +143,16 @@
 
         public function setBan($ban){
                 $this->ban = $ban;
+
+                return $this;
+        }
+
+        public function getAvatar(){
+                return $this->avatar;
+        }
+
+        public function setAvatar($avatar){
+                $this->avatar = $avatar;
 
                 return $this;
         }

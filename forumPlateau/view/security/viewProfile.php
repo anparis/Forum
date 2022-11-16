@@ -1,8 +1,14 @@
 <?php
 $posts = $result["data"]["posts"];
 $topics = $result["data"]["topics"];
-
+$user = $result["data"]["user"];
 ?>
+<figure>
+<div class="img-overflow">
+    <a class="avatar-upload" href="#">Changer mon avatar</a>
+    <img src="<?= $user->getAvatar() ?>" alt="pixel-art as default user avatar">
+</div>
+</figure>
 <h1>Profil</h1>
 <p>Pseudo : <?= $_SESSION['user'] ?></p>
 <p>Email : <?= $_SESSION['user']->getEmail() ?></p>

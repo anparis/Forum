@@ -102,15 +102,17 @@ class SecurityController extends AbstractController implements ControllerInterfa
     }
 
     // profile of user connected
-    public function viewProfile()
+    public function viewProfile($id)
     {
         $postManager = new PostManager();
         $topicManager = new TopicManager();
+        $userManager = new UtilisateurManager();
         return [
             "view" => VIEW_DIR . "security/viewProfile.php",
             "data" => [
-                "posts" => $postManager->findPostsByUserId($_GET['id']),
-                "topics" => $topicManager->findTopicsByUserId($_GET['id'])
+                "posts" => $postManager->findPostsByUserId($id),
+                "topics" => $topicManager->findTopicsByUserId($id),
+                "user" => $userManager->findOneById($id)
             ]
         ];
     }

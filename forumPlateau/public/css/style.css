@@ -287,4 +287,24 @@ footer {
 }
 footer p {
   padding: 8px 16px;
+}
+
+figure {
+  width: 20%;
+}
+figure .img-overflow {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+figure .img-overflow img {
+  width: 250px;
+}
+figure .img-overflow .avatar-upload {
+  display: block;
+  position: absolute;
+  opacity: 0;
+}
+figure .img-overflow:hover .avatar-upload {
+  opacity: 100%;
 }/*# sourceMappingURL=style.css.map */

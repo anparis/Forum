@@ -31,7 +31,7 @@ final class Categorie extends Entity
         }
 
         /**
-         * Get the value of title
+         * Get the value of Name
          */ 
         public function getNom()
         {
@@ -39,7 +39,7 @@ final class Categorie extends Entity
         }
 
         /**
-         * Set the value of title
+         * Set the value of Name
          *
          * @return  self
          */ 
