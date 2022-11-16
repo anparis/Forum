@@ -59,7 +59,7 @@ else{ ?>
     <?php
     foreach($posts as $post){
     ?>
-    <section class="post-list">
+    <section class="post-topic">
         <p><?=$post->getText()?></p>
         <p>Posted by <?=$post->getUtilisateur()->getPseudo()?></p>
         <p><?=$post->getDatePost()?></p>

@@ -194,9 +194,32 @@ article.public-article form input {
   color: rgb(13, 13, 13);
 }
 
-.post-list {
+.post-topic {
   border-bottom: 1px solid #d9dbdc;
   margin-bottom: 10px;
+}
+
+.post-list {
+  border: 1px solid #d9dbdc;
+  border-radius: 5px;
+}
+.post-list .single-post {
+  padding: 12px;
+  border-bottom: 1px solid #d9dbdc;
+}
+.post-list .single-post .post-text-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.post-list .single-post .post-text-date .txt {
+  font-size: 0.9rem;
+  margin-right: 5px;
+}
+
+.date {
+  font-size: small;
+  color: #6c757d;
 }
 
 #categorielist {

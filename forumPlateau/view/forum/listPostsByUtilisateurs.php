@@ -10,7 +10,7 @@ if(empty($posts)){
 }
 else{
 foreach($posts as $post){ ?>
-        <section class="post-list">
+        <section class="post-topic">
             <p><?=$post->getDatePost()?></p>
             <p><a href="index.php?ctrl=forum&action=listPosts&id=<?=$post->getTopic()->getId()?>">Aller vers sujet</a></p>
             <p><?=$post->getText()?></p>

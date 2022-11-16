@@ -37,6 +37,8 @@
                             <?php
                                 if(App\Session::getUser()){
                                     ?>
+                                <div class="mobile-nav">
+
                                     <a href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                                     <?php
                                         if(App\Session::isAdmin()){
@@ -47,6 +49,8 @@
                                     ?>
                                     <a href="index.php?ctrl=forum&action=listTopics">Topics</a>
                                     <a href="index.php?ctrl=security&action=logoutUtilisateurs">Déconnexion</a>
+                                </div>
+
                                     <?php
                                 }
                                 else{

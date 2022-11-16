@@ -223,11 +223,33 @@ article.public-article{
     color: $dark;
 }
 
-.post-list{
+.post-topic{
     border-bottom: 1px solid $separator;
     margin-bottom: 10px;
 }
 
+.post-list{
+    border: 1px solid $separator;
+    border-radius: 5px;
+    .single-post{
+        padding: 12px;
+        border-bottom: 1px solid $separator;
+        .post-text-date{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .txt{
+                font-size: 0.9rem;
+                margin-right: 5px;
+            }
+        }    
+    }
+}
+
+.date{
+    font-size: small;
+    color: $darkerkGray;
+}
 
 #categorielist{
     @extend %button;
