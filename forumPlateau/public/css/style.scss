@@ -66,6 +66,7 @@ a{
     background-color: $del-color;
     padding: 3px;
     border: 1px solid $darkerRed;
+    cursor: pointer;
 }
 
 .f-w{
@@ -124,6 +125,9 @@ header{
                 flex-direction: column;
                 padding-top: 100px;
                 width: 60%;
+                a{
+                    padding: 16px 32px;
+                }
             }
         }
         .clicked{
@@ -137,9 +141,6 @@ header{
             background: $blurred-bg;
             backdrop-filter: blur(7px);
             left: 0;
-            a{
-                padding: 16px 32px;
-            }
         }
 
     }
@@ -276,6 +277,12 @@ article.public-article{
     }
 }
 
+.ban{
+    ::marker{
+        content: '❌';
+    }
+}
+
 #first-post{
     margin: 20px;
 }
@@ -293,3 +300,4 @@ footer{
         padding: 8px 16px;
     }
 }
+

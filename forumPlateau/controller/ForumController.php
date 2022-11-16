@@ -114,7 +114,7 @@ class ForumController extends AbstractController implements ControllerInterface
         ];
     }
 
-    public function addTopics()
+    public function addTopics($id)
     {
         $categorieManager = new CategorieManager();
         
@@ -123,7 +123,7 @@ class ForumController extends AbstractController implements ControllerInterface
             $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $statut = filter_input(INPUT_POST, "statut", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $idUser = $_GET['id'];
+            $idUser = $id;
 
             if($idCategorie && $text && $titre && $statut && $idUser){
                 $topicManager = new TopicManager();
@@ -183,8 +183,8 @@ class ForumController extends AbstractController implements ControllerInterface
 
     //  Edition methods
 
-    public function editPosts(){
-        if(isset($_GET['id'])){
+    public function editPosts($id){
+        if($id){
             $postManager = new PostManager();
             return [
                 "view" => VIEW_DIR . "forum/editPosts.php",
@@ -193,14 +193,10 @@ class ForumController extends AbstractController implements ControllerInterface
                 ]
             ];
         }
-        else
-            return [
-                "view" => VIEW_DIR . "forum/editPosts.php",
-            ];
     }
 
-    public function editTopics(){
-        if(isset($_GET['id'])){
+    public function editTopics($id){
+        if($id){
             $topicManager = new TopicManager();
             return [
                 "view" => VIEW_DIR . "forum/editTopics.php",
@@ -209,81 +205,85 @@ class ForumController extends AbstractController implements ControllerInterface
                 ]
             ];
         }
-        else
-            return [
-                "view" => VIEW_DIR . "forum/editTopics.php",
-            ];
     }
 
     //  Update db methods
 
-    public function updatePost(){
-        if(isset($_GET['id']) && isset($_POST['submitChangedPost'])){
+    public function updatePost($id){
+        if($id && isset($_POST['submitChangedPost'])){
             $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $idTopic = $_POST['idTopic'];
 
             if($text && $idTopic){
                 $postManager = new PostManager();
                 $data = ['text' => $text];
-                $postManager->update($_GET['id'], $data);
+                $postManager->update($id, $data);
+
                 $this->redirectTo('forum','listPosts', $idTopic);
             }
         }
     }
 
-    public function updateTopic(){
-        if(isset($_GET['id']) && isset($_POST['submitChangedTopic'])){
+    public function updateTopic($id){
+        if($id && isset($_POST['submitChangedTopic'])){
             $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
             if($titre){
                 $topicManager = new TopicManager();
                 $data = ['titre' => $titre];
-                $topicManager->update($_GET['id'], $data);
-                $this->redirectTo('forum','listPosts', $_GET['id']);
+                $topicManager->update($id, $data);
+                $idCat = $topicManager->findOneById($id)->getCategorie()->getId();
+
+                $this->redirectTo('forum','listCategories', $idCat);
             }
         }
     }
 
-    public function lockTopic(){
-        if(isset($_GET['id'])){
+    public function lockTopic($id){
+        if($id){
             $topicManager = new TopicManager();
             $data = ['statut'=> 0];
-            $topicManager->update($_GET['id'], $data);
+            $idCat = $topicManager->findOneById($id)->getCategorie()->getId();
+
+            $topicManager->update($id, $data);
+            $this->redirectTo('forum','listCategories',$idCat);
         }
-        $this->redirectTo('forum','listTopics');
     }
 
-    public function unlockTopic(){
-        if(isset($_GET['id'])){
+    public function unlockTopic($id){
+        if(isset($id)){
             $topicManager = new TopicManager();
             $data = ['statut'=> 1];
-            $topicManager->update($_GET['id'], $data);
+            $idCat = $topicManager->findOneById($id)->getCategorie()->getId();
+
+            $topicManager->update($id, $data);
+            $this->redirectTo('forum','listCategories',$idCat);
         }
-        $this->redirectTo('forum','listTopics');
     }
 
     //  DELETE METHOD 
-    public function delPosts(){
-        if(isset($_GET['id'])){
+    public function delPosts($id){
+        if(isset($id)){
             $postManager = new PostManager();
-            $post = $postManager->findOneById($_GET['id']);
+            $post = $postManager->findOneById($id);
             // keep the topic id in idTopic to redirect to the good topic after deletion
             $idTopic = $post->getTopic()->getId();
-            $postManager->delete($_GET['id']);
+            $postManager->delete($id);
         }
         $this->redirectTo('forum','listPosts',$idTopic);
     }
 
-    public function delTopics(){
-        if(isset($_GET['id'])){
+    public function delTopics($id){
+        if(isset($id)){
             $topicManager = new TopicManager();
             $postManager = new PostManager();
+            $idCat = $topicManager->findOneById($id)->getCategorie()->getId();
 
             // if delete topic then delete every posts from the topic
-            $postManager->deletePostsByTopicId($_GET['id']);
-            $topicManager->delete($_GET['id']);
+            $postManager->deletePostsByTopicId($id);
+            $topicManager->delete($id);
 
+
+            $this->redirectTo('forum','listCategories',$idCat);
         }
-        $this->redirectTo('forum','listTopics');
     }
 }

@@ -37,6 +37,6 @@ $categories = $result["data"]['categories'];
         </fieldset>
     </p>
 
-        <input type="submit" name="submitTopic" value="Valider">
+        <input class="login-btn" type="submit" name="submitTopic" value="Valider">
 
 </form>

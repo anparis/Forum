@@ -53,6 +53,7 @@ a {
   background-color: #fe2712;
   padding: 3px;
   border: 1px solid #b71c0e;
+  cursor: pointer;
 }
 
 .f-w {
@@ -109,6 +110,9 @@ header nav .nav-right .mobile-nav {
   padding-top: 100px;
   width: 60%;
 }
+header nav .nav-right .mobile-nav a {
+  padding: 16px 32px;
+}
 header nav .clicked {
   top: 0px;
   height: 100vh;
@@ -121,9 +125,6 @@ header nav .clicked {
   -webkit-backdrop-filter: blur(7px);
           backdrop-filter: blur(7px);
   left: 0;
-}
-header nav .clicked a {
-  padding: 16px 32px;
 }
 
 #mainpage {
@@ -242,6 +243,10 @@ article.public-article form input {
 }
 .user-list ::marker {
   content: "👤";
+}
+
+.ban ::marker {
+  content: "❌";
 }
 
 #first-post {

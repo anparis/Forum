@@ -11,6 +11,7 @@
         private $statut;
         private $utilisateur;
         private $categorie;
+        private $nbPosts; // champ non mappé en BDD
 
         public function __construct($data){         
             $this->hydrate($data);        

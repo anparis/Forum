@@ -39,18 +39,18 @@
                                     ?>
                                 <div class="mobile-nav">
 
-                                    <a href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                                    <a class="topic-title" href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                                     <?php
                                         if(App\Session::isAdmin()){
                                         ?>
-                                        <a href="index.php?ctrl=security&action=listUtilisateurs">Voir la liste des utilisateurs</a>
+                                        <a class="topic-title" href="index.php?ctrl=security&action=listUtilisateurs">Voir la liste des utilisateurs</a>
                                         <?php
                                         }
                                     ?>
-                                    <a href="index.php?ctrl=forum&action=listTopics">Topics</a>
-                                    <a href="index.php?ctrl=forum&action=listCategories">Categories</a>
-                                    <a href="index.php?ctrl=forum&action=listPosts">Posts</a>
-                                    <a href="index.php?ctrl=security&action=logoutUtilisateurs">Déconnexion</a>
+                                    <a class="topic-title" href="index.php?ctrl=forum&action=listTopics">Topics</a>
+                                    <a class="topic-title" href="index.php?ctrl=forum&action=listCategories">Categories</a>
+                                    <a class="topic-title" href="index.php?ctrl=forum&action=listPosts">Posts</a>
+                                    <a href="index.php?ctrl=security&action=logoutUtilisateurs"><button class="ban-btn">Déconnexion</button></a>
                                 </div>
 
                                     <?php
@@ -111,6 +111,9 @@
                 $( '.nav-right' ).toggleClass('clicked');
                 $(".btn-close-menu").hide();
                 $(".btn-menu").show();
+            })
+            $(".ban-click").on("click", function(){
+                $( '.user-list' ).toggleClass('ban');
             })
 
             tinymce.init({

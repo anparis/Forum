@@ -9,7 +9,7 @@ $topics = $result["data"]["topics"];
 <?php 
 if($posts == NULL) {?>
     <p>Nombre de participations : 0</p>
-    <p>Voir les sujets : <a class="add-topic-post" href="index.php?ctrl=forum&action=listPostsByTopics">Voir les sujets</a></p>
+    <p>Voir les sujets : <a href="index.php?ctrl=forum&action=listPostsByTopics"><button class="add-topic-post" >Voir les sujets</button></a></p>
 <?php } else { ?>
     <p>Nombre de participations :
     <?php $count = 0;
@@ -22,7 +22,7 @@ if($posts == NULL) {?>
 <?php 
 if($topics == NULL) {?>
     <p>Vous avez crée 0 sujets.</p>
-    <p>Créer mon premier sujet : <a class="add-topic-post" href="index.php?ctrl=forum&action=addTopics">+ Ajouter un sujet</a></p>
+    <p>Créer mon premier sujet : <a href="index.php?ctrl=forum&action=addTopics"><button class="add-topic-post" >+ Ajouter un sujet</button></a></p>
 <?php } else { ?>
     <h3>Vous avez crée les sujets suivants :</h3>
     <?php $count = 0;
