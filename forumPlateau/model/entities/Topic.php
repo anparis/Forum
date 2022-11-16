@@ -108,7 +108,7 @@
         }
 
         /**
-         * Get the value of user
+         * Get the value of category
          */ 
         public function getCategorie()
         {
@@ -116,13 +116,24 @@
         }
 
         /**
-         * Set the value of user
+         * Set the value of category
          *
          * @return  self
          */ 
         public function setCategorie($categorie)
         {
                 $this->categorie = $categorie;
+
+                return $this;
+        }
+
+        public function getNbPosts(){
+                return $this->nbPosts;
+        }
+
+        public function setNbPosts($nbPosts)
+        {
+                $this->nbPosts = $nbPosts;
 
                 return $this;
         }

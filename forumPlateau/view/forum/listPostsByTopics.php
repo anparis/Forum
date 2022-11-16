@@ -2,8 +2,9 @@
 $posts = $result["data"]['posts'];
 $topics = $result["data"]['topics'];
 $statutTopic = $topics->getStatut();
+$idCat = $topics->getCategorie()->getId();
 ?>
-<a href="index.php?ctrl=forum&action=listTopics"><- Revenir à la liste</a>
+<a href="index.php?ctrl=forum&action=listCategories&id=<?= $idCat ?>"><- Revenir à la liste</a>
 <h1 class="form-title"><?=$topics->getTitle()?></h1>
 <p>by <?=$topics->getUtilisateur()->getPseudo()?> the <?=$topics->getDateCreation()?></p>
 

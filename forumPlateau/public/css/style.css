@@ -176,6 +176,7 @@ article.public-article form input {
   font-size: 0.7rem;
   margin-left: 4px;
   text-align: right;
+  width: 15%;
 }
 #topic-list .topic-info {
   display: flex;

@@ -2,8 +2,8 @@
 $categories = $result["data"]['categories'];
 $topics = $result["data"]['topics'];
 ?>
-<h1><?=$categories->getNom()?></h1>
-<hr>
+<a href="index.php?ctrl=forum&action=listCategories"><-Revenir aux catégories</a>
+<h1 class="form-title"><?=$categories->getNom()?></h1>
 <a href='index.php?ctrl=forum&action=addTopics&id=<?= $categories->getId() ?>'><button class="add-topic-post">+ Ajouter un sujet</button></a>
 
 <?php 
@@ -20,6 +20,7 @@ if (isset($_SESSION['user']) && !$_SESSION['user']->getBan()) {
                 </a>
                 <?php if ($topic->getUtilisateur()->getEmail() === $_SESSION['user']->getEmail() || $_SESSION['user']->hasRole('admin')) { ?>
                     <section id="statut">
+                        <p><?= $topic->getNbPosts() ?> <span class="fas fa-comment"></span></p>
                         <?php if ($topic->getStatut()) { ?>
                             <a href='index.php?ctrl=forum&action=lockTopic&id=<?= $topic->getId() ?>'><span class='fas fa-lock-open'></span></a>
                         <?php } else {

@@ -26,18 +26,18 @@ class ForumController extends AbstractController implements ControllerInterface
         ];
     }
 
-    public function listCategories()
+    public function listCategories($id)
     {
         $categorieManager = new CategorieManager();
 
-        if (isset($_GET['id'])) {
+        if ($id) {
             $topicManager = new TopicManager();
 
             return [
                 "view" => VIEW_DIR . "forum/listTopicsByCategories.php",
                 "data" => [
-                    "categories" => $categorieManager->findOneById($_GET['id']),
-                    "topics" => $topicManager->findTopicsByCatId($_GET['id'])
+                    "categories" => $categorieManager->findOneById($id),
+                    "topics" => $topicManager->findTopicsByCatId($id)
                 ]
             ];
         } else {
