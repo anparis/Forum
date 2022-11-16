@@ -48,6 +48,8 @@
                                         }
                                     ?>
                                     <a href="index.php?ctrl=forum&action=listTopics">Topics</a>
+                                    <a href="index.php?ctrl=forum&action=listCategories">Categories</a>
+                                    <a href="index.php?ctrl=forum&action=listPosts">Posts</a>
                                     <a href="index.php?ctrl=security&action=logoutUtilisateurs">Déconnexion</a>
                                 </div>
 
