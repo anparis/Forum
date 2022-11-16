@@ -1,5 +1,5 @@
 <?php
-$categories = $result["data"]['categories'];
+$idCat = $result["idCat"];
 
 ?>
 <h1 class="form-title">Nouveau Sujet</h1>
@@ -11,14 +11,7 @@ $categories = $result["data"]['categories'];
             <input type="text" name="titre">
     </p>
     <p>
-    <label class="f-w">
-            Catégories :<br></label>
-        <select name="idCategorie" id="listCategories">
-            <?php
-                foreach($categories as $categorie ){?>
-                    <option value=<?= $categorie->getId() ?>><?=$categorie->getNom()?></option>
-            <?php }?>
-        </select>
+    <input type="hidden" name="idCategorie" value=<?= $idCat ?> >
     </p>
     <p>
         <label class="f-w" for="message">

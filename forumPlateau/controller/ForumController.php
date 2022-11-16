@@ -116,8 +116,6 @@ class ForumController extends AbstractController implements ControllerInterface
 
     public function addTopics($id)
     {
-        $categorieManager = new CategorieManager();
-        
         if(isset($_POST['submitTopic'])){
             $idCategorie = filter_input(INPUT_POST, "idCategorie", FILTER_SANITIZE_NUMBER_INT,FILTER_VALIDATE_INT);
             $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -144,14 +142,12 @@ class ForumController extends AbstractController implements ControllerInterface
                     "utilisateur_id" => $idUser
                 ];
                 $postManager->add($postData);
-                $this->redirectTo('forum','listTopics');
+                $this->redirectTo('forum','listCategories',$idCategorie);
             } 
         }
         return [
             "view" => VIEW_DIR . "forum/addTopics.php",
-            "data" => [
-                "categories" => $categorieManager->findAll(["nom", "ASC"])
-            ]
+            "idCat" => $id
         ];
     }
 

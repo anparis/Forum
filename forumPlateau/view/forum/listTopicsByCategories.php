@@ -4,7 +4,7 @@ $topics = $result["data"]['topics'];
 ?>
 <h1><?=$categories->getNom()?></h1>
 <hr>
-<a href='index.php?ctrl=forum&action=addTopics'><button class="add-topic-post">+ Ajouter un sujet</button></a>
+<a href='index.php?ctrl=forum&action=addTopics&id=<?= $categories->getId() ?>'><button class="add-topic-post">+ Ajouter un sujet</button></a>
 
 <?php 
 if($topics){
