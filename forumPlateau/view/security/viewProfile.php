@@ -3,11 +3,17 @@ $posts = $result["data"]["posts"];
 $topics = $result["data"]["topics"];
 $user = $result["data"]["user"];
 ?>
+<div class="profil-container">
 <figure>
-<div class="img-overflow">
-    <a class="avatar-upload" href="#">Changer mon avatar</a>
-    <img src="<?= $user->getAvatar() ?>" alt="pixel-art as default user avatar">
-</div>
+    <div class="img-overflow">
+        <a class="avatar-upload" href="index.php?ctrl=security&action=viewProfile&id=<?= $user->getId() ?>"><span class="fas fa-file-upload"></span></a>
+        <img src="<?= $user->getAvatar() ?>" alt="pixel-art as default user avatar">
+    </div>
+    <!-- Want to upload the file using ajax but I only use php -->
+    <form id="target" action="index.php?ctrl=security&action=fileUpload&id=<?= $user->getId() ?>" method="POST" enctype="multipart/form-data">
+        <input id="img-upload" type="file" name="img">
+        <input id="img-send" type="submit" name="submitAvatar">
+    </form>
 </figure>
 <h1>Profil</h1>
 <p>Pseudo : <?= $_SESSION['user'] ?></p>
@@ -36,3 +42,4 @@ if($topics == NULL) {?>
      } ?>
      <p>Vous avez crée <?= $count ?> sujets</p>
 <?php } ?>
+</div>

@@ -8,3 +8,7 @@
 
 
 # keeper
+<form id="target" action="index.php?ctrl=security&action=fileUpload&id=<?= $user->getId() ?>" method="POST" enctype="multipart/form-data">
+        <input id="img-upload" type="file" name="img">
+        <input id="img-send" type="submit" name="submitAvatar">
+    </form>

@@ -120,7 +120,7 @@ header nav .nav-right .mobile-nav a {
 header nav .clicked {
   top: 0px;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -257,7 +257,7 @@ article.public-article form input {
   color: white;
 }
 #categorielist :hover {
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .user-list ul li {
@@ -289,22 +289,38 @@ footer p {
   padding: 8px 16px;
 }
 
-figure {
+.profil-container {
+  padding-left: 40px;
+}
+.profil-container figure {
   width: 20%;
 }
-figure .img-overflow {
+.profil-container figure .img-overflow {
   position: relative;
   border-radius: 50%;
   overflow: hidden;
+  height: 150px;
+  width: 150px;
 }
-figure .img-overflow img {
-  width: 250px;
+.profil-container figure .img-overflow img {
+  height: 100%;
+  width: 100%;
 }
-figure .img-overflow .avatar-upload {
+.profil-container figure .img-overflow .avatar-upload {
   display: block;
   position: absolute;
   opacity: 0;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 40%;
 }
-figure .img-overflow:hover .avatar-upload {
+.profil-container figure .img-overflow .avatar-upload .fas {
+  font-size: 2rem;
+  color: rgb(13, 13, 13);
+}
+.profil-container figure .img-overflow:hover .avatar-upload {
   opacity: 100%;
 }/*# sourceMappingURL=style.css.map */
