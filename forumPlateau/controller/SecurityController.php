@@ -149,46 +149,46 @@ class SecurityController extends AbstractController implements ControllerInterfa
         }
     }
 
-    public function fileUpload($id){
-        if(isset($_POST['submitAvatar'])){
-            $tmpName = $_FILES['img']['tmp_name'];
-            $img_name = $_FILES['img']['name'];
-            $img_size = $_FILES['img']['size'];
-            // si error = 0 alors il n'y a aucune erreur
-            $error = $_FILES['img']['error'];
-            // gestion extensions
-            $tabExtension = explode('.', $img_name);
-            $extension = strtolower(end($tabExtension));
-            // extension que l'on accepte
-            $extensions = ['jpg', 'png', 'jpeg', 'gif'];
-            // gestion taille
-            $tailleMax = 400000;
+    // public function fileUpload($id){
+    //     if(isset($_POST['submitAvatar'])){
+    //         $tmpName = $_FILES['img']['tmp_name'];
+    //         $img_name = $_FILES['img']['name'];
+    //         $img_size = $_FILES['img']['size'];
+    //         // si error = 0 alors il n'y a aucune erreur
+    //         $error = $_FILES['img']['error'];
+    //         // gestion extensions
+    //         $tabExtension = explode('.', $img_name);
+    //         $extension = strtolower(end($tabExtension));
+    //         // extension que l'on accepte
+    //         $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+    //         // gestion taille
+    //         $tailleMax = 400000;
 
-            //si mon extension est accepte alors je place l'img dans le dossier upload
-            if (in_array($extension, $extensions) && $img_size <= $tailleMax && $error == 0) {
-                // gestion noms de fichier unique
-                $uniqueName = uniqid('',true);
-                $file = $uniqueName.".".$extension;
-                move_uploaded_file($tmpName, './public/img/' . $file);
-                $path = './public/img/' . $file;
-                $postManager = new PostManager();
-                $topicManager = new TopicManager();
-                $userManager = new UtilisateurManager();
-                $data = ["avatar"=>$path];
-                $userManager->update($id,$data);
-                return [
-                    "view" => VIEW_DIR . "security/viewProfile.php",
-                    "data" => [
-                        "posts" => $postManager->findPostsByUserId($id),
-                        "topics" => $topicManager->findTopicsByUserId($id),
-                        "user" => $userManager->findOneById($id)
-                    ]
-                ];
-            } else {
-                echo "Mauvaise extension / Taille trop grande";
-            }
-        }
-    }
+    //         //si mon extension est accepte alors je place l'img dans le dossier upload
+    //         if (in_array($extension, $extensions) && $img_size <= $tailleMax && $error == 0) {
+    //             // gestion noms de fichier unique
+    //             $uniqueName = uniqid('',true);
+    //             $file = $uniqueName.".".$extension;
+    //             move_uploaded_file($tmpName, './public/img/' . $file);
+    //             $path = './public/img/' . $file;
+    //             $postManager = new PostManager();
+    //             $topicManager = new TopicManager();
+    //             $userManager = new UtilisateurManager();
+    //             $data = ["avatar"=>$path];
+    //             $userManager->update($id,$data);
+    //             return [
+    //                 "view" => VIEW_DIR . "security/viewProfile.php",
+    //                 "data" => [
+    //                     "posts" => $postManager->findPostsByUserId($id),
+    //                     "topics" => $topicManager->findTopicsByUserId($id),
+    //                     "user" => $userManager->findOneById($id)
+    //                 ]
+    //             ];
+    //         } else {
+    //             echo "Mauvaise extension / Taille trop grande";
+    //         }
+    //     }
+    // }
 
     public function deleteAvatar($id){
         $userManager = new UtilisateurManager();

@@ -50,16 +50,16 @@ class ForumController extends AbstractController implements ControllerInterface
         }
     }
 
-    public function listPosts()
+    public function listPosts($id)
     {
         $postManager = new PostManager();
         // if the id of topic is set in url
         // -> only display posts related to the topic
-        if (isset($_GET['id'])) {
+        if ($id) {
             $topicManager = new TopicManager();
 
-            $post = $postManager->findPostsByTopicId($_GET['id']);
-            $topic = $topicManager->findOneById($_GET['id']);
+            $post = $postManager->findPostsByTopicId($id);
+            $topic = $topicManager->findOneById($id);
 
             return [
                 "view" => VIEW_DIR . "forum/listPostsByTopics.php",
@@ -79,13 +79,13 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
     // List posts by user
-    public function listPostsByUsers()
+    public function listPostsByUsers($id)
     {
         $postManager = new PostManager();
         $userManager = new UtilisateurManager();
 
-        $post = $postManager->findPostsByUserId($_GET['id']);
-        $user = $userManager->findOneById($_GET['id']);
+        $post = $postManager->findPostsByUserId($id);
+        $user = $userManager->findOneById($id);
         return [
             "view" => VIEW_DIR . "forum/listPostsByUtilisateurs.php",
             "data" => [
@@ -151,11 +151,11 @@ class ForumController extends AbstractController implements ControllerInterface
         ];
     }
 
-    public function addPosts()
+    public function addPosts($id)
     {
         if(isset($_POST['submitPost'])){
             //need to add list of categories to choose from in addTopics
-            $idTopic = $_GET['id'];
+            $idTopic = $id;
             $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $idUser = Session::getUser()->getId();
 
@@ -180,33 +180,29 @@ class ForumController extends AbstractController implements ControllerInterface
     //  Edition methods
 
     public function editPosts($id){
-        if($id){
             $postManager = new PostManager();
             return [
                 "view" => VIEW_DIR . "forum/editPosts.php",
                 "data" => [
-                    "post" => $postManager->findOneById($_GET['id'])
+                    "post" => $postManager->findOneById($id)
                 ]
             ];
-        }
     }
 
     public function editTopics($id){
-        if($id){
             $topicManager = new TopicManager();
             return [
                 "view" => VIEW_DIR . "forum/editTopics.php",
                 "data" => [
-                    "topic" => $topicManager->findOneById($_GET['id'])
+                    "topic" => $topicManager->findOneById($id)
                 ]
             ];
-        }
     }
 
     //  Update db methods
 
     public function updatePost($id){
-        if($id && isset($_POST['submitChangedPost'])){
+        if(isset($_POST['submitChangedPost'])){
             $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $idTopic = $_POST['idTopic'];
 
@@ -221,7 +217,7 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
     public function updateTopic($id){
-        if($id && isset($_POST['submitChangedTopic'])){
+        if(isset($_POST['submitChangedTopic'])){
             $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             if($titre){
                 $topicManager = new TopicManager();
@@ -235,41 +231,34 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
     public function lockTopic($id){
-        if($id){
             $topicManager = new TopicManager();
             $data = ['statut'=> 0];
             $idCat = $topicManager->findOneById($id)->getCategorie()->getId();
 
             $topicManager->update($id, $data);
             $this->redirectTo('forum','listCategories',$idCat);
-        }
     }
 
     public function unlockTopic($id){
-        if(isset($id)){
             $topicManager = new TopicManager();
             $data = ['statut'=> 1];
             $idCat = $topicManager->findOneById($id)->getCategorie()->getId();
 
             $topicManager->update($id, $data);
             $this->redirectTo('forum','listCategories',$idCat);
-        }
     }
 
     //  DELETE METHOD 
     public function delPosts($id){
-        if(isset($id)){
             $postManager = new PostManager();
             $post = $postManager->findOneById($id);
             // keep the topic id in idTopic to redirect to the good topic after deletion
             $idTopic = $post->getTopic()->getId();
             $postManager->delete($id);
-        }
         $this->redirectTo('forum','listPosts',$idTopic);
     }
 
     public function delTopics($id){
-        if(isset($id)){
             $topicManager = new TopicManager();
             $postManager = new PostManager();
             $idCat = $topicManager->findOneById($id)->getCategorie()->getId();
@@ -280,6 +269,5 @@ class ForumController extends AbstractController implements ControllerInterface
 
 
             $this->redirectTo('forum','listCategories',$idCat);
-        }
     }
 }

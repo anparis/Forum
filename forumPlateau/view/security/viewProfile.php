@@ -10,10 +10,14 @@ $user = $result["data"]["user"];
         <img src="<?= $user->getAvatar() ?>" alt="pixel-art as default user avatar">
     </div>
     <!-- Want to upload the file using ajax but I only use php -->
-    <form id="target" action="index.php?ctrl=security&action=fileUpload&id=<?= $user->getId() ?>" method="POST" enctype="multipart/form-data">
-        <input id="img-upload" type="file" name="img">
+    <form id="target" action="index.php?ctrl=security&action=fileUpload" method="POST" enctype="multipart/form-data">
         <input id="img-send" type="submit" name="submitAvatar">
+        <input id="img-upload" type="file" name="img">
+        <button type="submit">Cliquez ici !</button>
     </form>
+    <!-- <button id="target" onclick="sendData()">Cliquez ici !</button> -->
+
+    <a href="index.php?ctrl=security&action=deleteAvatar&id=<?= $user->getId() ?>">Delete</a>
 </figure>
 <h1>Profil</h1>
 <p>Pseudo : <?= $_SESSION['user'] ?></p>
