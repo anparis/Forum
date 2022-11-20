@@ -1,20 +1,19 @@
-$(document).ready(function () {
-    $("form").submit(function (event) {
-      var formData = {
-        name: $("#img-upload").val(),
-      };
+// $(document).ready(function () {
+//     $("#uploadForm").submit(function (event) {
     
-      $.ajax({
-        type: "POST",
-        url: "index.php?ctrl=security&action=fileUpload",
-        data: formData,
-        dataType: "json",
-        encode: true,
-      }).done(function (data) {
-        console.log(data);
-      });
+//       $.ajax({
+//         type: "POST",
+//         url: "index.php?ctrl=security&action=fileUpload",
+//         data: new FormData(this),
+//         dataType: "json",
+//         encode: true,
+//         success: function(data)
+// 		    {
+// 			    $(".img-overflow").html(data);
+// 		    },
+//       });
 
-      event.preventDefault();
+//       event.preventDefault();
 
-    });
-});
+//     });
+// });

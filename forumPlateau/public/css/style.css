@@ -267,10 +267,6 @@ article.public-article form input {
   content: "👤";
 }
 
-.ban ::marker {
-  content: "❌";
-}
-
 #first-post {
   margin: 20px;
 }

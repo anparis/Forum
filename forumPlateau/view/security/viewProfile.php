@@ -6,14 +6,14 @@ $user = $result["data"]["user"];
 <div class="profil-container">
 <figure>
     <div class="img-overflow">
-        <a class="avatar-upload" href="index.php?ctrl=security&action=viewProfile&id=<?= $user->getId() ?>"><span class="fas fa-file-upload"></span></a>
         <img src="<?= $user->getAvatar() ?>" alt="pixel-art as default user avatar">
+        <a class="avatar-upload" href="#" ><span class="fas fa-file-upload"></span></a>
     </div>
     <!-- Want to upload the file using ajax but I only use php -->
-    <form id="target" action="index.php?ctrl=security&action=fileUpload" method="POST" enctype="multipart/form-data">
-        <input id="img-send" type="submit" name="submitAvatar">
-        <input id="img-upload" type="file" name="img">
-        <button type="submit">Cliquez ici !</button>
+    <form id="uploadForm" action="index.php?ctrl=security&action=fileUpload&id=<?= $user->getId() ?>" method="POST" enctype="multipart/form-data">
+        <input id="userImage" type="file" name="img">
+        <input id="idUser" type="hidden" name="id" value=<?= $user->getId() ?>>
+        <input type="submit" name="submitAvatar" val="Submit">Cliquez ici !</button>
     </form>
     <!-- <button id="target" onclick="sendData()">Cliquez ici !</button> -->
 
