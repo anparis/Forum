@@ -201,7 +201,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
         unlink($avatarPath);
 
         
-        $data = ["avatar"=>'/public/img/default-avatar.png'];
+        $data = ["avatar"=>'./public/img/default-avatar.png'];
         $userManager->update($id,$data);
         return [
             "view" => VIEW_DIR . "security/viewProfile.php",

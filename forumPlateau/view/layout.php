@@ -55,6 +55,7 @@
                                 <a class="topic-title" href="index.php?ctrl=forum&action=listCategories">Categories</a>
                                 <a class="topic-title" href="index.php?ctrl=forum&action=listPosts">Posts</a>
                                 <a href="index.php?ctrl=security&action=logoutUtilisateurs"><button class="ban-btn">Déconnexion</button></a>
+                                <a href="#"><span class="fa fa-moon"></span></a>
                             </div>
 
                         <?php
@@ -66,6 +67,7 @@
                                 <a class="topic-title" href="index.php?ctrl=forum&action=listPosts">Posts</a>
                                 <a href="index.php?ctrl=security&action=loginUtilisateurs">Connexion</a>
                                 <a href="index.php?ctrl=security&action=addUtilisateurs">Inscription</a>
+                                <a href="#"><span class="fa fa-moon"></span></a>
                             </div>
                         <?php
                         }

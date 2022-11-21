@@ -13,11 +13,12 @@ $user = $result["data"]["user"];
     <form id="uploadForm" action="index.php?ctrl=security&action=fileUpload&id=<?= $user->getId() ?>" method="POST" enctype="multipart/form-data">
         <input id="userImage" type="file" name="img">
         <input id="idUser" type="hidden" name="id" value=<?= $user->getId() ?>>
-        <input type="submit" name="submitAvatar" val="Submit">Cliquez ici !</button>
+        <input type="submit" name="submitAvatar" value="Changer mon avatar" placeholder="ajouter un avatar"></input>
     </form>
     <!-- <button id="target" onclick="sendData()">Cliquez ici !</button> -->
-
-    <a href="index.php?ctrl=security&action=deleteAvatar&id=<?= $user->getId() ?>">Delete</a>
+    <?php if($user->getAvatar() != "./public/img/default-avatar.png") { ?>
+        <a href="index.php?ctrl=security&action=deleteAvatar&id=<?= $user->getId() ?>">Delete</a>
+    <?php } ?>
 </figure>
 <h1>Profil</h1>
 <p>Pseudo : <?= $_SESSION['user'] ?></p>
